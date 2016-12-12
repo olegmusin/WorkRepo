@@ -1,21 +1,11 @@
 ﻿/*site css*/
 
     
-body, html {
-    background-color: #eff5fb
-}
-
-.brandlink {
-   
-}
-
-
-
 
 .headerpic {
     max-width: 238px;
-    border: 1px solid #4f4f4f;
-    padding: 6px;
+
+    padding-bottom: 10px;
 }
 
 .menu {
@@ -31,12 +21,11 @@ body, html {
         }
 
         .menu li a {
-            color: #eff5fb;
+            color: #42A948;
         }
 
 #sidebar {
-    background: #4f4f4f;
-    color: #eff5fb;
+   
     position: fixed;
     height: 100%;
     width: 238px;

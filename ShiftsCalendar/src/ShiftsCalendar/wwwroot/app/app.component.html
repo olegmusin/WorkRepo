@@ -3,31 +3,32 @@
     <title> {{pageTitle}} </title>
 </head>
 <div id="sidebar">
-    <img src="/img/calendar/calendar-blue-512-262206.png" alt="headerpic" class="headerpic" />
-  
+    <img src="/img/shft3.jpg" alt="headerpic" class="headerpic" />
+
     <ul class="nav">
-        <li class="Active"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-        <li><a [routerLink]="['/workers']" href=""><i class="fa fa-group"></i> Workers</a></li>
-        <li><a [routerLink]="['/projects']" href=""><i class="fa fa-briefcase"></i> Projects</a></li>
-        <li><a [routerLink]="['/shifts']" href=""><i class="fa fa-calendar"></i> Shifts</a></li>
+        <li><a class="btn btn-primary" href="/"><i class="fa fa-home"></i> Home</a></li>
+        <li><a class="btn btn-primary" [routerLink]="['/workers']" href=""><i class="fa fa-group"></i> Workers</a></li>
+        <li><a class="btn btn-primary" [routerLink]="['/projects']" href=""><i class="fa fa-briefcase"></i> Projects</a></li>
+        <li><a class="btn btn-primary" [routerLink]="['/shifts']" href=""><i class="fa fa-calendar"></i> Shifts</a></li>
     </ul>
 </div>
 
 <div id="wrapper">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
-            <ul class="nav navbar-nav navbar-left">
+            <ul class="nav navbar-nav">
                 <li>
-                    <button id="sidebarToggle" class="btn btn-primary" (click)="togglePanel()">
+                    <a id="sidebarToggle" class="btn btn-sm btn-group-sm" (click)="togglePanel()">
                         <i class="fa fa-angle-double-left"></i>
-                    </button>
+                    </a>
                 </li>
-            
+                &nbsp;&nbsp;&nbsp;
             </ul>
+          
             
-            <div class="brandlink">
-                <a href="/" class="navbar-brand">Shifts Calendar</a>
-            </div>
+                <a href="/" class="nav navbar-brand" style="text-align: center">Shifts Calendar</a>
+   
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="#" class="btn btn-sm btn-group-sm">
@@ -48,11 +49,11 @@
 
         <router-outlet></router-outlet>
         <!--Component Placeholder-->
-        
+
 
     </div>
     <div id="footer" class="container-fluid">
-        <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar navbar-fixed-bottom" >  
             <h5 class="text-center text-info"> &copy;2016 Oleg Musin</h5>
         </div>
     </div>
