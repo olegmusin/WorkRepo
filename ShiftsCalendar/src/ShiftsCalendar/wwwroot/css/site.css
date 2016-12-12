@@ -1,0 +1,83 @@
+﻿/*site css*/
+
+    
+body, html {
+    background-color: #eff5fb
+}
+
+.brandlink {
+   
+}
+
+
+
+
+.headerpic {
+    max-width: 238px;
+    border: 1px solid #4f4f4f;
+    padding: 6px;
+}
+
+.menu {
+    font-size: 18px;
+}
+
+    .menu li {
+        list-style-type: none;
+    }
+
+        .menu li.Active {
+            font-weight: bold;
+        }
+
+        .menu li a {
+            color: #eff5fb;
+        }
+
+#sidebar {
+    background: #4f4f4f;
+    color: #eff5fb;
+    position: fixed;
+    height: 100%;
+    width: 238px;
+    overflow: hidden;
+    left: 0;
+    -moz-transition: left ease 0.5s;
+    -o-transition: left ease 0.5s;
+    -webkit-transition: left ease 0.5s;
+    transition: left ease 0.5s;
+}
+
+    #sidebar.hide-sidebar {
+        left: -238px;
+        -moz-transition: left ease 0.6s;
+        -o-transition: left ease 0.6s;
+        -webkit-transition: left ease 0.6s;
+        transition: left ease 0.6s;
+    }
+
+#wrapper {
+    margin: 0 0 0 238px;
+   
+    -moz-transition: margin-left ease 0.5s;
+    -o-transition: margin-left ease 0.5s;
+    -webkit-transition: margin-left ease 0.5s;
+    transition: margin-left ease 0.5s;
+}
+
+    #wrapper.hide-sidebar {
+        margin-left: 0;
+        -moz-transition: margin-left ease 0.6s;
+        -o-transition: margin-left ease 0.6s;
+        -webkit-transition: margin-left ease 0.6s;
+        transition: margin-left ease 0.6s;
+    }
+
+
+.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442; /* red */
+}

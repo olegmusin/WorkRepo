@@ -1,0 +1,6 @@
+﻿<div>
+    <wait-cursor *ngIf="isBusy"></wait-cursor>
+    <ul *ngFor="let shift of shifts" class="list-group" style="list-style-type: none">
+        <li>{{ shift.date | date: "dd/MM/yyyy" }}</li>
+    </ul>
+</div>
