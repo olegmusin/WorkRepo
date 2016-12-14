@@ -1,0 +1,5 @@
+{
+  "database": {
+    "connection": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ShiftsCalendarDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+  }
+}

@@ -25,29 +25,38 @@
     </div>
 
     <div class="col-md-4">
-        <ul style="list-style-type: none">
 
-            <li>
-                <a [routerLink]="['/projects']" href="" class="btn btn-default btn-group-justified">
-                    <i class="fa fa-briefcase"></i>&nbsp;&nbsp;Projects Briefcase
-                </a>
-            </li>
+        
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Features</h3>
+                </div>
+                <div class="panel-body">
+                    <ul style="list-style-type: none">
 
-            <li>
-                <a [routerLink]="['/shifts']" href="" class="btn btn-default  btn-group-justified">
-                    <i class="fa fa-calendar"></i>&nbsp;&nbsp;Compose Shifts
-                </a>
-            </li>
+                        <li>
+                            <a [routerLink]="['/projects']" href="" class="btn btn-default btn-group-justified">
+                                <i class="fa fa-briefcase"></i>&nbsp;&nbsp;Projects Briefcase
+                            </a>
+                        </li>
 
-            <li>
-                <a [routerLink]="['/workers']" href="" class="btn btn-default  btn-group-justified">
-                    <i class="fa fa-group"></i>&nbsp;&nbsp;Manage Workers
-                </a>
-            </li>
+                        <li>
+                            <a [routerLink]="['/shifts']" href="" class="btn btn-default  btn-group-justified">
+                                <i class="fa fa-calendar"></i>&nbsp;&nbsp;Compose Shifts
+                            </a>
+                        </li>
+
+                        <li>
+                            <a [routerLink]="['/workers']" href="" class="btn btn-default  btn-group-justified">
+                                <i class="fa fa-group"></i>&nbsp;&nbsp;Manage Workers
+                            </a>
+                        </li>
 
 
-        </ul>
-    </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
 </div>
 
