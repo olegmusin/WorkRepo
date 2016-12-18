@@ -33,7 +33,7 @@ namespace ShiftsCalendarASP.Controllers.Api
             try
             {
                 var projects = _repository.GetAll();
-                return View(Mapper.Map<IEnumerable<ProjectsViewModel>>(projects));
+                return View();
             }
             catch (Exception ex)
             {
@@ -78,7 +78,7 @@ namespace ShiftsCalendarASP.Controllers.Api
 
         //POST
         [HttpPost("")]
-        public async Task<IActionResult> Post([FromBody]ProjectsViewModel project)
+        public async Task<IActionResult> AddProject([FromForm]ProjectsViewModel project)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ShiftsCalendarASP.Controllers.Api
                 _repository.Add(newProject);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return Ok(Mapper.Map<ProjectsViewModel>(newProject));
+                    return View("Projects");
                 }
             }
             _logger.LogError($"Failed to add new project {project.Name}");
