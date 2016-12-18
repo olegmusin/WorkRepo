@@ -1,0 +1,7 @@
+﻿@model IEnumerable<ShiftsViewModel>
+
+<ul id="shiftslist" style="text-align:center">@foreach (ShiftsViewModel shift in Model)
+{
+    <li>@String.Format("{0:dd/MM/yyyy}",shift.Date)</li>
+}
+</ul>

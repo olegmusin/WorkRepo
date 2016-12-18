@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ShiftsCalendar.Models;
-using ShiftsCalendar.Models.Repository;
-using ShiftsCalendar.ViewModels;
+using ShiftsCalendarASP.Models;
+using ShiftsCalendarASP.Models.Repository;
+using ShiftsCalendarASP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShiftsCalendar.Controllers.Api
+namespace ShiftsCalendarASP.Controllers.Api
 {
     [Route("api/projects/{projectId}/shifts")]
     public class ShiftsController : Controller

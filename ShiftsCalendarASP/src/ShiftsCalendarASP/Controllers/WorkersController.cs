@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ShiftsCalendar.Models;
-using ShiftsCalendar.Models.Repository;
-using ShiftsCalendar.ViewModels;
+using ShiftsCalendarASP.Models;
+using ShiftsCalendarASP.Models.Repository;
+using ShiftsCalendarASP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShiftsCalendar.Controllers.Api
+namespace ShiftsCalendarASP.Controllers
 {
-    [Route("api/workers")]
+    [Route("Workers")]
     public class WorkersController : Controller
     {
         private ILogger<WorkersController> _logger;
@@ -26,12 +26,12 @@ namespace ShiftsCalendar.Controllers.Api
         }
         //GET
         [HttpGet("")]
-        public IActionResult Get()
+        public IActionResult Workers()
         {
             try
             {
                 var workers = _repository.GetAll();
-                return Ok(Mapper.Map<IEnumerable<WorkersViewModel>>(workers));
+                return View();
             }
             catch (Exception ex)
             {
@@ -59,7 +59,7 @@ namespace ShiftsCalendar.Controllers.Api
         
         //POST
         [HttpPost("")]
-        public async Task<IActionResult> Post([FromBody]WorkersViewModel worker)
+        public async Task<IActionResult> AddWorker([FromForm]WorkersViewModel worker)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace ShiftsCalendar.Controllers.Api
                 _repository.Add(newWorker);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return Created($"api/workers/{newWorker.Name}", Mapper.Map<WorkersViewModel>(newWorker));
+                    return View("Workers");
                 }
             }
             _logger.LogError($"Failed to add new worker {worker.Name}");
@@ -75,8 +75,8 @@ namespace ShiftsCalendar.Controllers.Api
         }
 
         //UPDATE
-        [HttpPut("edit/{workerId}")]
-        public async Task<IActionResult> Edit([FromBody]WorkersViewModel worker)
+        [HttpGet("edit/{workerId}")]
+        public async Task<IActionResult> Edit([FromForm]WorkersViewModel worker)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace ShiftsCalendar.Controllers.Api
                 _repository.Edit(editWorker);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return Ok(Mapper.Map<WorkersViewModel>(editWorker));
+                    return View("Workers", Mapper.Map<WorkersViewModel>(editWorker));
                 }
             }
 
@@ -101,7 +101,7 @@ namespace ShiftsCalendar.Controllers.Api
                 _repository.Delete(delWorker);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return Ok();
+                    return View("Workers");
                 }
             }
 
@@ -116,7 +116,7 @@ namespace ShiftsCalendar.Controllers.Api
             try
             {
                 var shifts = _repository.GetWorkerShifts(workerId);
-                return Ok(Mapper.Map<IEnumerable<ShiftsViewModel>>(shifts.ToList()));
+                return ViewComponent("ShiftsList",Mapper.Map<IEnumerable<ShiftsViewModel>>(shifts.ToList()));
             }
             catch (Exception ex)
             {

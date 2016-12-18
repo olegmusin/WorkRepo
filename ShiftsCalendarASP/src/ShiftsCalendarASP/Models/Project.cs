@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShiftsCalendar.Models
+namespace ShiftsCalendarASP.Models
 {
     public class Project
     {

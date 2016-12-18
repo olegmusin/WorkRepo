@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using AutoMapper.Execution;
-using ShiftsCalendar.Models;
+using ShiftsCalendarASP.Models;
 
-namespace ShiftsCalendar.Models.Repository
+namespace ShiftsCalendarASP.Models.Repository
 {
     public class WorkersRepository : GenericRepository<Worker>
     {

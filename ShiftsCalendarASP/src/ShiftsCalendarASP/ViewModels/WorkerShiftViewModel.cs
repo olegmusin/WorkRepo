@@ -1,4 +1,4 @@
-﻿namespace ShiftsCalendar.ViewModels
+﻿namespace ShiftsCalendarASP.ViewModels
 {
     public class WorkerShiftViewModel
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace ShiftsCalendar.Models
+namespace ShiftsCalendarASP.Models
 {
     public class ShiftsCalendarContext : DbContext
     {

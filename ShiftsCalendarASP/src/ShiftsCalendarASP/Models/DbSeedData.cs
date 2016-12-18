@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShiftsCalendar.Models
+namespace ShiftsCalendarASP.Models
 {
     public class DbSeedData
     {

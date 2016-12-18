@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using ShiftsCalendar.Models;
+using ShiftsCalendarASP.Models;
 
-namespace ShiftsCalendar.Migrations
+namespace ShiftsCalendarASP.Migrations
 {
     [DbContext(typeof(ShiftsCalendarContext))]
     partial class ShiftsCalendarContextModelSnapshot : ModelSnapshot

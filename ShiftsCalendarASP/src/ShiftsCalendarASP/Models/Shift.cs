@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ShiftsCalendar.Models
+namespace ShiftsCalendarASP.Models
 {
     public class Shift
     {

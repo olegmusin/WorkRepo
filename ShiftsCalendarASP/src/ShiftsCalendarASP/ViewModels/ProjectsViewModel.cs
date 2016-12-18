@@ -1,8 +1,8 @@
-﻿using ShiftsCalendar.Models;
+﻿using ShiftsCalendarASP.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShiftsCalendar.ViewModels
+namespace ShiftsCalendarASP.ViewModels
 {
     public class ProjectsViewModel
     { 

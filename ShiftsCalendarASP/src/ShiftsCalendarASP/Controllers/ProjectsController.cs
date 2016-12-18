@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ShiftsCalendar.Models;
-using ShiftsCalendar.Models.Repository;
-using ShiftsCalendar.ViewModels;
+using ShiftsCalendarASP.Models;
+using ShiftsCalendarASP.Models.Repository;
+using ShiftsCalendarASP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShiftsCalendar.Controllers.Api
+namespace ShiftsCalendarASP.Controllers.Api
 {
-    [Route("api/projects")]
+    [Route("Projects")]
     public class ProjectsController : Controller
     {
         private ProjectsRepository _repository;
@@ -28,12 +28,12 @@ namespace ShiftsCalendar.Controllers.Api
 
         //GET
         [HttpGet("")]
-        public IActionResult Get()
+        public IActionResult Projects()
         {
             try
             {
                 var projects = _repository.GetAll();
-                return Ok(Mapper.Map<IEnumerable<ProjectsViewModel>>(projects));
+                return View(Mapper.Map<IEnumerable<ProjectsViewModel>>(projects));
             }
             catch (Exception ex)
             {

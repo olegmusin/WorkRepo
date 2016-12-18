@@ -14,9 +14,9 @@ using ShiftsCalendarASP.Models;
 using ShiftsCalendarASP.Services;
 using AutoMapper;
 using Newtonsoft.Json.Serialization;
-using ShiftsCalendar.Models;
-using ShiftsCalendar.ViewModels;
-using ShiftsCalendar.Models.Repository;
+using ShiftsCalendarASP.Models;
+using ShiftsCalendarASP.ViewModels;
+using ShiftsCalendarASP.Models.Repository;
 
 namespace ShiftsCalendarASP
 {
@@ -99,7 +99,7 @@ namespace ShiftsCalendarASP
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
+         
                 loggerFactory.AddDebug(LogLevel.Information);
             }
             else
@@ -108,19 +108,17 @@ namespace ShiftsCalendarASP
                 loggerFactory.AddDebug(LogLevel.Information);
             }
 
-            
-
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute("Api", "api/{controller}/{action}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //    routes.MapRoute("Api", "api/{controller}/{action}/{id?}");
+            //});
 
             seeder.EnsureSeedData().Wait();
         }

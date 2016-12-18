@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
 
-namespace ShiftsCalendar.Models.Repository
+namespace ShiftsCalendarASP.Models.Repository
 {
     public class ProjectsRepository : GenericRepository<Project>
     {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 
-namespace ShiftsCalendar.Models.Repository
+namespace ShiftsCalendarASP.Models.Repository
 {
     public class ShiftsRepository : GenericRepository<Shift>
     {
@@ -32,10 +32,7 @@ namespace ShiftsCalendar.Models.Repository
 
         }
 
-        public IEnumerable<Shift> GetShiftsForWorker(int workerId)
-        {
-            return _context.Shifts.Where(s => s.Workers.All(w => w.WorkerId.Equals(workerId)));
-        }
+
 
     }
 }

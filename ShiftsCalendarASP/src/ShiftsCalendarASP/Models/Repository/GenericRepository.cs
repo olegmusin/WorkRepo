@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShiftsCalendar.Models.Repository
+namespace ShiftsCalendarASP.Models.Repository
 {
 
     public class GenericRepository<T> : IGenericRepository<T> where T : class

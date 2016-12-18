@@ -1,4 +1,4 @@
-﻿namespace ShiftsCalendar.Models
+﻿namespace ShiftsCalendarASP.Models
 {
     public class WorkerShift
     {
