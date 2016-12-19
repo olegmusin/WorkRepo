@@ -96,17 +96,16 @@ namespace ShiftsCalendarASP.Controllers
         public async Task<IActionResult> Delete(int workerId)
         {
             if (ModelState.IsValid)
-            {
-                var delWorker = _repository.GetSingle(workerId);
-                _repository.Delete(delWorker);
+            {            
+                _repository.Delete(workerId);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return View("Workers");
+                    return RedirectToAction("Workers");
                 }
             }
 
             _logger.LogError($"Failed to delete worker with id {workerId}");
-            return BadRequest();
+            return Redirect("/Home/error");
         }
 
         //GETSHIFTSBYID

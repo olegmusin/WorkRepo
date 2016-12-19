@@ -103,7 +103,7 @@ namespace ShiftsCalendarASP.Controllers.Api
                 _repository.Edit(editProject);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return Ok(Mapper.Map<ProjectsViewModel>(editProject));
+                    return View("Projects");
                 }
             }
 
@@ -112,21 +112,20 @@ namespace ShiftsCalendarASP.Controllers.Api
         }
 
         //DELETE
-        [HttpDelete("delete/{projectId}")]
+        [HttpGet("delete/{projectId}")]
         public async Task<IActionResult> Delete(int projectId)
         {
             if (ModelState.IsValid)
-            {
-                var delProject = _repository.GetSingle(projectId);
-                _repository.Delete(delProject);
+            {            
+                _repository.Delete(projectId);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return Ok();
+                    return RedirectToAction("Projects");
                 }
             }
 
             _logger.LogError($"Failed to delete project with id {projectId}");
-            return BadRequest();
+            return Redirect("/Home/error");
         }
 
 

@@ -23,8 +23,11 @@ namespace ShiftsCalendarASP.Models.Repository
 
         public Worker GetSingle(int workerId)
         {
-            var query = GetAll().FirstOrDefault(x => x.Id == workerId);
-            _logger.LogInformation($"Worker  with Id: {workerId} fetched");
+            var query = base.GetAll().FirstOrDefault(x => x.Id == workerId);
+            if (query != null)
+                _logger.LogInformation($"Worker  with Id: {workerId} fetched");
+            else
+                _logger.LogError($"Worker  with Id: {workerId} CAN'T BE fetched!");
             return query;
         }
 
@@ -35,6 +38,10 @@ namespace ShiftsCalendarASP.Models.Repository
                     select s;
             return q;
 
+        }
+        public void Delete(int workerId)
+        {
+            _context.Entry(new Worker { Id = workerId }).State = EntityState.Deleted;
         }
 
     }

@@ -27,11 +27,6 @@ namespace ShiftsCalendarASP.Models.Repository
             return query;
         }
 
-        //public override IQueryable<Project> GetAll()
-        //{
-        //    return base.GetAll().Include(p => p.Shifts);
-        //}
-
         public override IQueryable<Project> FindBy(Expression<Func<Project, bool>> predicate)
         {
             var query = _context.Set<Project>()
@@ -49,6 +44,10 @@ namespace ShiftsCalendarASP.Models.Repository
                 project.Shifts.Add(newShift);
                 _context.Shifts.Add(newShift);
             }
+        }
+        public void Delete(int projectId)
+        {
+            _context.Entry(new Project { Id = projectId }).State = EntityState.Deleted;
         }
 
         public void DeleteShift(int shiftId)

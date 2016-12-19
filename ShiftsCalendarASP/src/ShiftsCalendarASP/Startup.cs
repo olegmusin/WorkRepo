@@ -48,15 +48,16 @@ namespace ShiftsCalendarASP
             //Singletons
             services.AddSingleton(Configuration);
             services.AddDbContext<ShiftsCalendarContext>();
+            services.AddTransient<WorkersRepository>();
+            services.AddTransient<ShiftsRepository>();
+            services.AddTransient<ProjectsRepository>();
             services.AddTransient<DbSeedData>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            //One per request cycle
-            services.AddScoped<ShiftsRepository>();
+            //One vm per request cycle
+           
             services.AddScoped<ShiftsViewModel>();
-            services.AddScoped<ProjectsRepository>();
             services.AddScoped<ProjectsViewModel>();
-            services.AddScoped<WorkersRepository>();
             services.AddScoped<WorkersViewModel>();
            
             // Add framework services.
