@@ -1,6 +1,5 @@
 ﻿@model WorkersViewModel
 
-@*<form asp-controller="Workers" asp-action="method">*@
 <h4>@Model.Action worker</h4>
 @using (Html.BeginForm(Model.Action, "Workers"))
 {
@@ -25,8 +24,7 @@
 
     <div class="form-group">
 
-        <button type="submit" asp-route-id="@Model.Id">@Model.Action</button>  
+        <button type="submit" class="btn btn-sm btn-success" asp-route-id="@Model.Id">@Model.Action</button>  
 
     </div>
 }
-@*</form>*@

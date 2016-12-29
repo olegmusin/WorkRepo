@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShiftsSchedule.Models;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace ShiftsSchedule.Controllers
 {
     [Route("Projects")]
+    [AutoValidateAntiforgeryToken]
     public class ProjectsController : Controller
     {
         private ProjectsRepository _repository;
@@ -25,8 +27,10 @@ namespace ShiftsSchedule.Controllers
        
         }
 
+        #region CRUD Actions
         //GET
         [HttpGet("")]
+        [Authorize]
         public IActionResult Projects()
         {
             try
@@ -42,42 +46,10 @@ namespace ShiftsSchedule.Controllers
 
         }
 
-        //GETBYID
-        [HttpGet("{projectId}")]
-        public IActionResult GetById(int projectId)
-    {
-        try
-        {
-            var project = _repository.GetSingle(projectId);
-            return Ok(Mapper.Map<ProjectsViewModel>(project));
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError($"Failed to get project {projectId} from database, due to => {ex.Message}");
-                return BadRequest();
-            }
-
-    }
-        //GETBYNAME
-        [HttpGet("projectName")]
-        public IActionResult GetByName(string projectName)
-        {
-            try
-            {
-                var project = _repository.FindBy( p => p.Name == projectName).Take(0);
-                return Ok(Mapper.Map<ProjectsViewModel>(project));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to get project {projectName} from database, due to => {ex.Message}");
-                return BadRequest();
-            }
-
-        }
-
-        //POST
+        //ADD
         [HttpPost("")]
-        public async Task<IActionResult> AddProject([FromForm]ProjectsViewModel project)
+        [Authorize]
+        public async Task<IActionResult> Add(ProjectsViewModel project)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +57,7 @@ namespace ShiftsSchedule.Controllers
                 _repository.Add(newProject);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return View("Projects");
+                    return RedirectToAction("Projects");
                 }
             }
             _logger.LogError($"Failed to add new project {project.Name}");
@@ -93,8 +65,9 @@ namespace ShiftsSchedule.Controllers
         }
 
         //UPDATE
-        [HttpPut("edit/{projectId}")]
-        public async Task<IActionResult> Edit([FromBody]ProjectsViewModel project)
+        [HttpPost("edit/{projectId}")]
+        [Authorize]
+        public async Task<IActionResult> Update(ProjectsViewModel project)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +75,7 @@ namespace ShiftsSchedule.Controllers
                 _repository.Edit(editProject);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return View("Projects");
+                    return RedirectToAction("Projects");
                 }
             }
 
@@ -112,10 +85,11 @@ namespace ShiftsSchedule.Controllers
 
         //DELETE
         [HttpGet("delete/{projectId}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int projectId)
         {
             if (ModelState.IsValid)
-            {            
+            {
                 _repository.Delete(projectId);
                 if (await _repository.SaveChangesAsync())
                 {
@@ -127,8 +101,61 @@ namespace ShiftsSchedule.Controllers
             return Redirect("/Home/error");
         }
 
+        #endregion
 
+        #region Navigate Actions
+        //Navigate to Edit page
+        [HttpGet("edit/{projectId}")]
+        public IActionResult Edit(int projectId)
+        {
+            try
+            {
+                var editProject = _repository.GetSingle(projectId);
+                return View("EditProject", Mapper.Map<ProjectsViewModel>(editProject));
+            }
+            catch
+            {
+                _logger.LogError($"Can't fetch project {projectId} for edit!");
+                return RedirectToAction("/Home/Error");
+            }
+        }
 
+        #endregion
 
+        #region Miscellanious Actions
+
+        //GETBYID
+        [HttpGet("{projectId}")]
+        public IActionResult GetById(int projectId)
+        {
+            try
+            {
+                var project = _repository.GetSingle(projectId);
+                return Ok(Mapper.Map<ProjectsViewModel>(project));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get project {projectId} from database, due to => {ex.Message}");
+                return BadRequest();
+            }
+
+        }
+        //GETBYNAME
+        [HttpGet("{projectName}")]
+        public IActionResult GetByName(string projectName)
+        {
+            try
+            {
+                var project = _repository.FindBy(p => p.Name == projectName).Take(0);
+                return Ok(Mapper.Map<ProjectsViewModel>(project));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get project {projectName} from database, due to => {ex.Message}");
+                return BadRequest();
+            }
+
+        } 
+        #endregion
     }
 }

@@ -2,19 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using ShiftsSchedule.Models.Repository;
 using ShiftsSchedule.Models.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ShiftsSchedule.ViewComponents
 {
-    public class AddEditProjectViewComponent: ViewComponent
+    public class AddEditProject: ViewComponent
     {
 
         private readonly ProjectsRepository _repo;
 
-        public AddEditProjectViewComponent(ProjectsRepository repo)
+        public AddEditProject(ProjectsRepository repo)
         {
             _repo = repo;
         }
@@ -27,7 +23,7 @@ namespace ShiftsSchedule.ViewComponents
                 return View(project);
             }
             else
-                return View();
+                return View(new ProjectsViewModel());
         }
 
         private ProjectsViewModel GetProject(int projectId)

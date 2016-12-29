@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace ShiftsSchedule.ViewComponents
 {
-    public class ProjectsListViewComponent : ViewComponent
+    public class ProjectsList : ViewComponent
     {
         private readonly ProjectsRepository _repo;
-        public ProjectsListViewComponent(ProjectsRepository repo)
+        public ProjectsList(ProjectsRepository repo)
         {
             _repo = repo;
         }

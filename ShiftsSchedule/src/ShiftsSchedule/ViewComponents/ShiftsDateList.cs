@@ -7,12 +7,12 @@ using AutoMapper;
 
 namespace ShiftsSchedule.ViewComponents
 {
-    public class ShiftsDateListViewComponent : ViewComponent
+    public class ShiftsDateList : ViewComponent
     {
         private readonly WorkersRepository _repoWkr;
         private ProjectsRepository _repoPrj;
 
-        public ShiftsDateListViewComponent(WorkersRepository repoWrk, ProjectsRepository repoPrj)
+        public ShiftsDateList(WorkersRepository repoWrk, ProjectsRepository repoPrj)
         {
             _repoWkr = repoWrk;
             _repoPrj = repoPrj;
