@@ -1,0 +1,9 @@
+﻿@{ 
+    ViewData["Title"] = "Manage projects";
+}
+<div class="row">
+        @await Component.InvokeAsync("AddEditProject")
+    <div class="col-md-8">
+        @await Component.InvokeAsync("ProjectsList")
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model WorkersViewModel
+
+@*<form asp-controller="Workers" asp-action="method">*@
+<h4>@Model.Action worker</h4>
+@using (Html.BeginForm(Model.Action, "Workers"))
+{
+    Html.AntiForgeryToken();
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger" a></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Specialty"></label>
+        <input asp-for="Specialty" class="form-control" />
+        <span asp-validation-for="Specialty" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Salary"></label>
+        <input asp-for="Salary" class="form-control"/>
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+
+        <button type="submit" asp-route-id="@Model.Id">@Model.Action</button>  
+
+    </div>
+}
+@*</form>*@
