@@ -1,18 +1,4 @@
-﻿@model IEnumerable<ShiftsViewModel>
-
-
-<ul id="shiftslist">
-    @foreach (ShiftsViewModel shift in Model)
-    {
-        <li style="text-align: center">@String.Format("{0:dd/MM/yyyy}", shift.Date)</li>
-    }
-
-    <li class="btn text-info" style="text-align: center" data-projectId="@ViewData["projectId"]" data-toggle="modal" data-target="#myModalNorm">
-        <i class="fa fa-calendar">&nbsp Add a shift</i>
-    </li>
-</ul>
-
-@* Modal Window *@
+﻿
 <div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -25,20 +11,20 @@
                     <span class="sr-only">Close</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Add new shift to project
+                    Modal title
                 </h4>
             </div>
 
             <!-- Modal Body -->
             <div class="modal-body">
 
-                <form asp-action="Create" asp-controller="Shifts" asp-route-id="@ViewData["projectId"]" role="form">
+                <form role="form">
                     <div class="form-group">
                         <label for="inputDate">Shift date:</label>
                         <input type="date" class="form-control"
-                               id="inputDate" placeholder="" />
+                               id="inputDate" placeholder="01.01.2017"/>
                     </div>
-
+                    
                     <button type="submit" class="btn btn-default">Add</button>
                 </form>
 
@@ -49,14 +35,12 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
                         data-dismiss="modal">
-                    Cancel
+                    Close
                 </button>
-   
+                <button type="button" class="btn btn-primary">
+                    Save changes
+                </button>
             </div>
         </div>
     </div>
 </div>
-
-
-
-

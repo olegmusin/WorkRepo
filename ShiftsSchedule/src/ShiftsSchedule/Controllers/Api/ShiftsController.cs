@@ -9,15 +9,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShiftsSchedule.Controllers
+namespace ShiftsSchedule.Controllers.Api
 {
-    [Route("Shifts")]
+    [Route("api/projects/{projectId}/shifts")]
     public class ShiftsController : Controller
     {
         private ProjectsRepository _repository;
         private ILogger<ShiftsController> _logger;
         private ShiftsViewModel _vm;
-        #region CRUD ACTIONS
 
         public ShiftsController(ProjectsRepository repository, ILogger<ShiftsController> logger, ShiftsViewModel vm)
         {
@@ -25,7 +24,7 @@ namespace ShiftsSchedule.Controllers
             _logger = logger;
             _vm = vm;
         }
-        //READ
+        //GET
         [HttpGet("")]
         public IActionResult Get(int projectId)
         {
@@ -40,9 +39,9 @@ namespace ShiftsSchedule.Controllers
                 return Redirect("/error");
             }
         }
-        //CREATE
-        [HttpPost("{projectId}")]
-        public async Task<IActionResult> Create(int projectId, [FromBody]ShiftsViewModel shift)
+        //POST
+        [HttpPost("")]
+        public async Task<IActionResult> Post(int projectId, [FromBody]ShiftsViewModel shift)
         {
             try
             {
@@ -52,7 +51,8 @@ namespace ShiftsSchedule.Controllers
                     _repository.AddShiftForProject(projectId, newShift);
                     if (await _repository.SaveChangesAsync())
                     {
-                        return RedirectToAction("/Projects/Projects");
+                        return Created($"api/projects/{projectId}/shifts/{newShift.Id}",
+                               Mapper.Map<ShiftsViewModel>(newShift));
                     }
                 }
 
@@ -82,6 +82,5 @@ namespace ShiftsSchedule.Controllers
             return Redirect("/error");
         }
 
-        #endregion
     }
 }

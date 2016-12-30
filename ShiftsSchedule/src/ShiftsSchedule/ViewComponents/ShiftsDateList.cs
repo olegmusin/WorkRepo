@@ -20,6 +20,7 @@ namespace ShiftsSchedule.ViewComponents
 
         public IViewComponentResult Invoke(int? workerId, int? projectId)
         {
+            ViewData.Add("projectId", projectId);
             var items = GetItems(workerId, projectId);
             return View(items);
         }
