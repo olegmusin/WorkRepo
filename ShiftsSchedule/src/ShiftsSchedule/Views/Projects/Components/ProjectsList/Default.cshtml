@@ -18,7 +18,7 @@
 
                 <td>@project.Address</td>
 
-                <td>@project.NumberOfWorkers</td>
+                <td id="nofw">@project.NumberOfWorkers</td>
 
                 <td>@await Component.InvokeAsync("ShiftsDateList", new { projectId = project.Id })</td>
                 <td>
