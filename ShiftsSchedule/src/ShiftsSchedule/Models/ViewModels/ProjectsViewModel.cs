@@ -17,7 +17,11 @@ namespace ShiftsSchedule.Models.ViewModels
         [Required]
         public string Address { get; set; }
 
-        public List<Shift> Shifts { get; set; }
+        public List<Shift> Shifts
+        {
+            get; set;
+        }
+
         [Required]
         [Range(typeof(int), "0", "99999")]
         [Display(Name = "Workers required:")]

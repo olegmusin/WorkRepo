@@ -18,10 +18,11 @@ namespace ShiftsSchedule.ViewComponents
             _repoPrj = repoPrj;
         }
 
-        public IViewComponentResult Invoke(int? workerId, int? projectId)
+        public IViewComponentResult Invoke(int? workerId, int? projectId, bool? extended)
         {
-            ViewData.Add("projectId", projectId);
             var items = GetItems(workerId, projectId);
+            if (extended == true)
+                return View("Extended", items);
             return View(items);
         }
         private IEnumerable<ShiftsViewModel> GetItems(int? workerId, int? projectId)

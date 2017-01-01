@@ -1,20 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using AutoMapper.Execution;
-using ShiftsSchedule.Models;
+using ShiftsSchedule.Data;
 
 namespace ShiftsSchedule.Models.Repository
 {
     public class WorkersRepository : GenericRepository<Worker>
     {
-        private ShiftsCalendarContext _context;
+        private ShiftsScheduleContext _context;
         private ILogger<WorkersRepository> _logger;
 
-        public WorkersRepository(ShiftsCalendarContext context, ILogger<WorkersRepository> logger)
+        public WorkersRepository(ShiftsScheduleContext context, ILogger<WorkersRepository> logger)
             : base(context, logger)
         {
             _logger = logger;

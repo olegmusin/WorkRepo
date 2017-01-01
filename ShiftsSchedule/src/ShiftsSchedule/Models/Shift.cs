@@ -9,6 +9,8 @@ namespace ShiftsSchedule.Models
         public DateTime Date { get; set; }
         public virtual Project Project { get; set; }
 
+        public bool IsCanceled { get; set; }
+
         public virtual ICollection<WorkerShift> Workers { get; set; }
 
     }

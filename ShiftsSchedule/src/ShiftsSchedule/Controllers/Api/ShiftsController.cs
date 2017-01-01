@@ -8,21 +8,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace ShiftsSchedule.Controllers.Api
 {
     [Route("api/projects/{projectId}/shifts")]
-    public class ShiftsController : Controller
+    public class ShiftsController : ApiController
     {
         private ProjectsRepository _repository;
         private ILogger<ShiftsController> _logger;
-        private ShiftsViewModel _vm;
+    
 
-        public ShiftsController(ProjectsRepository repository, ILogger<ShiftsController> logger, ShiftsViewModel vm)
+        public ShiftsController(ProjectsRepository repository, ILogger<ShiftsController> logger)
         {
             _repository = repository;
             _logger = logger;
-            _vm = vm;
         }
         //GET
         [HttpGet("")]

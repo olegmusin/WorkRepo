@@ -3,9 +3,21 @@
 }
 <div class="row">
     <div class="col-md-4">
-        @await Component.InvokeAsync("AddEditProject", new { projectId = Model.Id})
+        @await Component.InvokeAsync("AddEditProject", new { projectId = Model.Id })
     </div>
-    <div class="col-md-8">
-        @await Component.InvokeAsync("ProjectsList")
+    <div class="col-md-4">
+        <form asp-controller="Shifts" asp-action="Create" asp-route-projectId="@Model.Id">
+            <div class="form-group">
+                <label for="inputDate">Shift date:</label>
+                <input type="date" class="form-control"
+                       id="inputDate" placeholder="" />
+            </div>
+            <button type="submit" class="btn btn-success">Add Shift</button>
+        </form>
+    </div>
+    <div class="col-md-4">
+
+        @await Component.InvokeAsync("ShiftsDateList", new { projectId = Model.Id, extended = true })
+
     </div>
 </div>

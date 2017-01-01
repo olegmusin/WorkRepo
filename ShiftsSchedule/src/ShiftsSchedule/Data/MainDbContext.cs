@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using ShiftsSchedule.Models;
 
-namespace ShiftsSchedule.Models
+namespace ShiftsSchedule.Data
 {
-    public class ShiftsCalendarContext : DbContext
+    public class ShiftsScheduleContext : DbContext
     {
         private IConfigurationRoot config;
 
-        public ShiftsCalendarContext(DbContextOptions<ShiftsCalendarContext> options, IConfigurationRoot config)
+        public ShiftsScheduleContext(DbContextOptions<ShiftsScheduleContext> options, IConfigurationRoot config)
             : base(options)
         {
             this.config = config;

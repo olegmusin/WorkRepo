@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using ShiftsSchedule.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShiftsSchedule.Models
+namespace ShiftsSchedule.Data
 {
     public class DbSeedData
     {
-        private ShiftsCalendarContext _context;
+        private ShiftsScheduleContext _context;
 
-        public DbSeedData(ShiftsCalendarContext context)
+        public DbSeedData(ShiftsScheduleContext context)
         {
             _context = context;
         }
@@ -17,7 +18,7 @@ namespace ShiftsSchedule.Models
         {
             if(!_context.Workers.Any())
             {   
-                var wkr1 = new Worker
+                var wkr1 = new ShiftsSchedule.Models.Worker
                 { Name = "Andrew Piters",
                     Salary = 300,
                     Specialty = "Carpenter",

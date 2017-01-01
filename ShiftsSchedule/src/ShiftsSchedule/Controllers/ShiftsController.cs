@@ -11,19 +11,18 @@ using System.Threading.Tasks;
 
 namespace ShiftsSchedule.Controllers
 {
-    [Route("Shifts")]
+    [Route("projects/{projectId}/shifts")]
     public class ShiftsController : Controller
     {
         private ProjectsRepository _repository;
         private ILogger<ShiftsController> _logger;
-        private ShiftsViewModel _vm;
+        
         #region CRUD ACTIONS
 
-        public ShiftsController(ProjectsRepository repository, ILogger<ShiftsController> logger, ShiftsViewModel vm)
+        public ShiftsController(ProjectsRepository repository, ILogger<ShiftsController> logger)
         {
             _repository = repository;
             _logger = logger;
-            _vm = vm;
         }
         //READ
         [HttpGet("")]
@@ -41,8 +40,8 @@ namespace ShiftsSchedule.Controllers
             }
         }
         //CREATE
-        [HttpPost("{projectId}")]
-        public async Task<IActionResult> Create(int projectId, [FromBody]ShiftsViewModel shift)
+        [HttpPost("")]
+        public async Task<IActionResult> Create(int projectId, ShiftsViewModel shift)
         {
             try
             {
@@ -52,7 +51,7 @@ namespace ShiftsSchedule.Controllers
                     _repository.AddShiftForProject(projectId, newShift);
                     if (await _repository.SaveChangesAsync())
                     {
-                        return RedirectToAction("/Projects/Projects");
+                        return RedirectToAction("Projects","Projects");
                     }
                 }
 
@@ -65,9 +64,9 @@ namespace ShiftsSchedule.Controllers
 
             return BadRequest($"Failed to add new shift {shift.Date.Date} for project {projectId}");
         }
-        //DELETE
-        [HttpDelete("{shiftId}/delete")]
-        public async Task<IActionResult> Delete(int shiftId)
+        //DELETE (LOGICAL)
+        [HttpGet("delete/{shiftId}")] 
+        public async Task<IActionResult> Dismiss(int shiftId)
         {
             if (ModelState.IsValid)
             {

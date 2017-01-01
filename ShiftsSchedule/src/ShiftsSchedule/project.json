@@ -47,7 +47,8 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "System.Linq.Expressions": "4.3.0"
+    "System.Linq.Expressions": "4.3.0",
+    "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.1"
   },
 
   "tools": {

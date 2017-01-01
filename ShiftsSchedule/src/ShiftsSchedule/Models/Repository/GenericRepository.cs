@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ShiftsSchedule.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace ShiftsSchedule.Models.Repository
 
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private ShiftsCalendarContext _entities;
+        private ShiftsScheduleContext _entities;
         private ILogger<GenericRepository<T>> _logger;
 
-        public GenericRepository(ShiftsCalendarContext context, ILogger<GenericRepository<T>> logger)
+        public GenericRepository(ShiftsScheduleContext context, ILogger<GenericRepository<T>> logger)
         {
             _entities = context;
             _logger = logger;
