@@ -50,7 +50,6 @@ namespace ShiftsSchedule.Models.Repository
         public void DeleteShift(int shiftId)
         {
             var delShift = _context.Shifts.First(s => s.Id == shiftId);
-          
             _context.Shifts.Remove(delShift);
 
         }

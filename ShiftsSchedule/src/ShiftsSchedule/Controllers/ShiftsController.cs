@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ShiftsSchedule.Controllers
 {
-    [Route("projects/{projectId}/shifts")]
+    [Route("Shifts")]
     public class ShiftsController : Controller
     {
         private ProjectsRepository _repository;
@@ -25,23 +25,23 @@ namespace ShiftsSchedule.Controllers
             _logger = logger;
         }
         //READ
-        [HttpGet("")]
-        public IActionResult Get(int projectId)
-        {
-            try
-            {
-                var project = _repository.FindBy(p => p.Id == projectId).FirstOrDefault();
-                return Ok(Mapper.Map<IEnumerable<ShiftsViewModel>>(project.Shifts.ToList()));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to get all shifts for project: {ex.Message}");
-                return Redirect("/error");
-            }
-        }
+        //[HttpGet("")]
+        //public IActionResult Get(int projectId)
+        //{
+        //    try
+        //    {
+        //        var project = _repository.FindBy(p => p.Id == projectId).FirstOrDefault();
+        //        return Ok(Mapper.Map<IEnumerable<ShiftsViewModel>>(project.Shifts.ToList()));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Failed to get all shifts for project: {ex.Message}");
+        //        return Redirect("/error");
+        //    }
+        //}
         //CREATE
-        [HttpPost("")]
-        public async Task<IActionResult> Create(int projectId, ShiftsViewModel shift)
+        [HttpPost]
+        public async Task<IActionResult> Create(int projectId, [FromForm]ShiftsViewModel shift)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace ShiftsSchedule.Controllers
                     _repository.AddShiftForProject(projectId, newShift);
                     if (await _repository.SaveChangesAsync())
                     {
-                        return RedirectToAction("Projects","Projects");
+                        return RedirectToAction("Edit","Projects");
                     }
                 }
 
@@ -65,7 +65,7 @@ namespace ShiftsSchedule.Controllers
             return BadRequest($"Failed to add new shift {shift.Date.Date} for project {projectId}");
         }
         //DELETE (LOGICAL)
-        [HttpGet("delete/{shiftId}")] 
+        [HttpGet("dismiss/{shiftId}")] 
         public async Task<IActionResult> Dismiss(int shiftId)
         {
             if (ModelState.IsValid)
@@ -73,7 +73,7 @@ namespace ShiftsSchedule.Controllers
                 _repository.DeleteShift(shiftId);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return Ok();
+                    return RedirectToActionPermanent("Edit", "Projects");
                 }
             }
 
