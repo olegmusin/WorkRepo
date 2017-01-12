@@ -18,9 +18,9 @@ namespace ShiftsSchedule.Models.Repository
             _context = context;
         }
 
-        public Project GetSingle(int shiftId)
+        public Project GetSingle(int projectId)
         {
-            var query = GetAll().FirstOrDefault(x => x.Id == shiftId);
+            var query = GetAll().FirstOrDefault(x => x.Id == projectId);
             return query;
         }
 
@@ -45,6 +45,13 @@ namespace ShiftsSchedule.Models.Repository
         public void Delete(int projectId)
         {
             _context.Entry(new Project { Id = projectId }).State = EntityState.Deleted;
+        }
+
+        public int ProjectIdByShiftId(int shiftId)
+        {
+            return _context.Set<Project>()
+                           .Where(p => p.Shifts.Any(s => s.Id == shiftId))
+                           .Select(p => p.Id).First();       
         }
 
         public void DeleteShift(int shiftId)

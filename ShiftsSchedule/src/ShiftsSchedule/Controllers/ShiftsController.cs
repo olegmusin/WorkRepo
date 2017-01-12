@@ -24,26 +24,12 @@ namespace ShiftsSchedule.Controllers
             _repository = repository;
             _logger = logger;
         }
-        //READ
-        //[HttpGet("")]
-        //public IActionResult Get(int projectId)
-        //{
-        //    try
-        //    {
-        //        var project = _repository.FindBy(p => p.Id == projectId).FirstOrDefault();
-        //        return Ok(Mapper.Map<IEnumerable<ShiftsViewModel>>(project.Shifts.ToList()));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError($"Failed to get all shifts for project: {ex.Message}");
-        //        return Redirect("/error");
-        //    }
-        //}
+      
         //CREATE
         [HttpPost]
         public async Task<IActionResult> Create(int projectId, [FromForm]ShiftsViewModel shift)
         {
-            try
+           try
             {
                 if (ModelState.IsValid)
                 {
@@ -51,7 +37,7 @@ namespace ShiftsSchedule.Controllers
                     _repository.AddShiftForProject(projectId, newShift);
                     if (await _repository.SaveChangesAsync())
                     {
-                        return RedirectToAction("Edit","Projects");
+                       return Redirect($"Projects/Edit/{projectId}");
                     }
                 }
 
@@ -70,10 +56,11 @@ namespace ShiftsSchedule.Controllers
         {
             if (ModelState.IsValid)
             {
+                int projectId = _repository.ProjectIdByShiftId(shiftId);
                 _repository.DeleteShift(shiftId);
                 if (await _repository.SaveChangesAsync())
-                {
-                    return RedirectToActionPermanent("Edit", "Projects");
+                { 
+                    return RedirectToRoute($"Projects/Edit/{projectId}");
                 }
             }
 
