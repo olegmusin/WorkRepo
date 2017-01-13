@@ -108,15 +108,15 @@ namespace ShiftsSchedule
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-            //  app.UseMvcWithDefaultRoute();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute("Api", "api/{controller}/{action}/{id?}");
-                routes.MapRoute("ShiftsRoute", "projects/{projectsId}/shifts/{id?}");
-            });
+          app.UseMvcWithDefaultRoute();
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //    routes.MapRoute("Api", "api/{controller}/{action}/{id?}");
+            //    routes.MapRoute("ShiftsRoute", "projects/{projectsId}/shifts/{id?}");
+            //});
 
             seeder.EnsureSeedData().Wait();
         }

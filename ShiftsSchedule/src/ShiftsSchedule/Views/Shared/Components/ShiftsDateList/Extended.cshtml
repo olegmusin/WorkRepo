@@ -12,20 +12,23 @@
     <tbody>
         @foreach (ShiftsViewModel shift in Model)
         {
-        <tr>
-            <td>@shift.Id</td>
-            <td style="text-align: center">@String.Format("{0:dd/MM/yyyy}", shift.Date)</td>
-            <td>           
-                <a asp-action="Workers" asp-controller="Shifts"
-                   asp-route-id="@shift.Id" class="btn btn-sm btn-info">
-                @shift.Workers.Count()</a>
-            <td>
-                <a asp-action="Dismiss" asp-controller="Shifts" 
-                   asp-route-id="@shift.Id" 
-                   class="btn btn-sm btn-danger">
-                Dismiss</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@shift.Id</td>
+                <td style="text-align: center">@String.Format("{0:dd/MM/yyyy}", shift.Date)</td>
+                <td>
+                    <a asp-action="Workers" asp-controller="Shifts"
+                       asp-route-id="@shift.Id" class="btn btn-sm btn-info">
+                        @shift.Workers.Count()
+                    </a>
+                <td>
+                    <button  id="btn-cancel-shift"
+                       data-shift-id="@shift.Id"
+                       data-project-id="@shift.ProjectId"
+                       class="js-cancel-shift">
+                        Cancel
+                    </button>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

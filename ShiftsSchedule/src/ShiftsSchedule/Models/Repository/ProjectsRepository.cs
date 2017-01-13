@@ -47,18 +47,17 @@ namespace ShiftsSchedule.Models.Repository
             _context.Entry(new Project { Id = projectId }).State = EntityState.Deleted;
         }
 
-        public int ProjectIdByShiftId(int shiftId)
+        public Project ProjectByShiftId(int shiftId)
         {
             return _context.Set<Project>()
-                           .Where(p => p.Shifts.Any(s => s.Id == shiftId))
-                           .Select(p => p.Id).First();       
+                           .Single(p => p.Shifts.Any(s => s.Id == shiftId));       
         }
 
         public void DeleteShift(int shiftId)
         {
             var delShift = _context.Shifts.First(s => s.Id == shiftId);
             _context.Shifts.Remove(delShift);
-
+         //   delShift.IsCanceled = true;
         }
 
     }

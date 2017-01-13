@@ -29,7 +29,7 @@ namespace ShiftsSchedule.Controllers.Api
         public IActionResult Get(int projectId)
         {
             try
-            {
+            {  
                 var project = _repository.FindBy(p => p.Id == projectId).FirstOrDefault();
                 return Ok(Mapper.Map<IEnumerable<ShiftsViewModel>>(project.Shifts.ToList()));
             }
@@ -66,7 +66,7 @@ namespace ShiftsSchedule.Controllers.Api
             return BadRequest($"Failed to add new shift {shift.Date.Date} for project {projectId}");
         }
         //DELETE
-        [HttpDelete("{shiftId}/delete")]
+        [HttpDelete("delete/{shiftId}")]
         public async Task<IActionResult> Delete(int shiftId)
         {
             if (ModelState.IsValid)

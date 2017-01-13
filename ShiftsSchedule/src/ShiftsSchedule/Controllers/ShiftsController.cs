@@ -56,11 +56,11 @@ namespace ShiftsSchedule.Controllers
         {
             if (ModelState.IsValid)
             {
-                int projectId = _repository.ProjectIdByShiftId(shiftId);
+                var projectId = _repository.ProjectByShiftId(shiftId).Id;
                 _repository.DeleteShift(shiftId);
                 if (await _repository.SaveChangesAsync())
                 { 
-                    return RedirectToRoute($"Projects/Edit/{projectId}");
+                    return RedirectToRoute("Api", projectId);
                 }
             }
 

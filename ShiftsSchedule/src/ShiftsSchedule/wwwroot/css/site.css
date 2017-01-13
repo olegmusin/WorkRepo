@@ -56,3 +56,13 @@ textarea {
 #nofw{
     text-align: center
 }
+#btn-cancel-shift {
+    background-color: red;
+   border-radius: 5px;
+   border-color: red;
+   color: white;
+   border-right-color:red;
+   border-bottom-color:red; 
+   border-style:solid;
+   padding: 3px;
+}
