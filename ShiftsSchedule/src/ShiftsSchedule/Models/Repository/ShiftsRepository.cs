@@ -29,7 +29,14 @@ namespace ShiftsSchedule.Models.Repository
 
         }
 
-
+        public IEnumerable<Worker> WorkersAttendingShift(int shiftId)
+        {
+            var shift = _context.Shifts
+                .Include(s => s.Workers)
+                .ThenInclude(ws => ws.Worker)
+                .Single(s => s.Id == shiftId);
+            return shift.Workers.Select(ws => ws.Worker);
+        }
 
     }
 }

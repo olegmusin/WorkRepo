@@ -7,7 +7,6 @@ namespace ShiftsSchedule.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        [Required]
         public string Address { get; set; }
         public virtual ICollection<Shift> Shifts { get; set; }
         public int NumberOfWorkers { get; set; }

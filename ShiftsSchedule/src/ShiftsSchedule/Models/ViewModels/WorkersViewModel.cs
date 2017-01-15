@@ -16,10 +16,11 @@ namespace ShiftsSchedule.Models.ViewModels
         [Required]
         [StringLength(50, MinimumLength = 5)]
         public string Name { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false, 
+            ErrorMessage = "Salary should be specified like one of the list")]
         public string Specialty { get; set; }
         [Required]
-        [Range(typeof(decimal),"0", "999999", ErrorMessage = "Salary must be greater than 0")]
+        [Range(typeof(decimal),"0", "999999", ErrorMessage = "Salary should be in range from 0 to 100000")]
         [DisplayFormat(DataFormatString = "$ *.*")]
         public decimal Salary { get; set; }
 

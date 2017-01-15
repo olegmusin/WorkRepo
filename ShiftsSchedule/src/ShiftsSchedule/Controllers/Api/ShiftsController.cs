@@ -39,32 +39,7 @@ namespace ShiftsSchedule.Controllers.Api
                 return Redirect("/error");
             }
         }
-        //POST
-        [HttpPost("")]
-        public async Task<IActionResult> Post(int projectId, [FromBody]ShiftsViewModel shift)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var newShift = Mapper.Map<Shift>(shift);
-                    _repository.AddShiftForProject(projectId, newShift);
-                    if (await _repository.SaveChangesAsync())
-                    {
-                        return Created($"api/projects/{projectId}/shifts/{newShift.Id}",
-                               Mapper.Map<ShiftsViewModel>(newShift));
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to add new shift {shift.Date.Date} for project {projectId} due to: {ex.Message}");
-                return Redirect("/error");
-            }
-
-            return BadRequest($"Failed to add new shift {shift.Date.Date} for project {projectId}");
-        }
+        
         //DELETE
         [HttpDelete("delete/{shiftId}")]
         public async Task<IActionResult> Delete(int shiftId)

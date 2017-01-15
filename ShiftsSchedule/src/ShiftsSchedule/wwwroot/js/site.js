@@ -1,5 +1,7 @@
 ﻿// Write your Javascript code.
 $(document).ready(function () {
+
+      //Cancel Shift
     $(".js-cancel-shift").click(function (e) {
         var link = $(e.target);
         if (confirm("Are you sure you want to cancel this shift?")) {

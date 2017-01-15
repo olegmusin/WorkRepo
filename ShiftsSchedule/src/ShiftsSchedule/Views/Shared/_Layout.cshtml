@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ShiftsCalendarASP</title>
+    <title>@ViewData["Title"] - Shifts Schedule</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />      
         <link rel="stylesheet" href="~/lib/bootswatch/readable/bootstrap.css" />
         <link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.css" />
+
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -45,8 +46,9 @@
             </div>
         </div>
     </div>
+
     <div class="container body-content">
-       
+      
          @RenderBody()
         
     </div>
@@ -66,12 +68,16 @@
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+       
     </environment>
+    @Html.Partial("_ValidationScriptsPartial")
 
     @RenderSection("scripts", required: false)
-    <footer class="nav navbar-fixed-bottom nav">
-        <hr />
-        <p style="text-align:center">&copy; 2016 - ShiftsSchedule</p>
+   
+    <footer class="panel-footer navbar-fixed-bottom">
+        <p style="text-align:center">&copy; 2016 - Shifts Schedule</p>
     </footer>
+
 </body>
+
 </html>

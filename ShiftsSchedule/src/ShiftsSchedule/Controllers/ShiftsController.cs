@@ -27,6 +27,7 @@ namespace ShiftsSchedule.Controllers
       
         //CREATE
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int projectId, [FromForm]ShiftsViewModel shift)
         {
            try
@@ -50,24 +51,7 @@ namespace ShiftsSchedule.Controllers
 
             return BadRequest($"Failed to add new shift {shift.Date.Date} for project {projectId}");
         }
-        //DELETE (LOGICAL)
-        [HttpGet("dismiss/{shiftId}")] 
-        public async Task<IActionResult> Dismiss(int shiftId)
-        {
-            if (ModelState.IsValid)
-            {
-                var projectId = _repository.ProjectByShiftId(shiftId).Id;
-                _repository.DeleteShift(shiftId);
-                if (await _repository.SaveChangesAsync())
-                { 
-                    return RedirectToRoute("Api", projectId);
-                }
-            }
-
-            _logger.LogError($"Failed to delete shift with id {shiftId}");
-            return Redirect("/error");
-        }
-
+      
         #endregion
     }
 }
