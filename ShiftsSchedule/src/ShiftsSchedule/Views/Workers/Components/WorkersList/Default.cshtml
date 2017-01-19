@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<WorkersViewModel>
+@{ 
+    CultureInfo MyCulture = new CultureInfo("en-US");
+}
 <table class="table table-striped table-responsive">
 
     <thead>
@@ -18,7 +21,9 @@
 
                 <td>@worker.Specialty</td>
 
-                <td>@worker.Salary</td>
+                <td>
+                    @worker.Salary.ToString("C", MyCulture)/hour
+                </td>
 
                 <td>@await Component.InvokeAsync("ShiftsDateList", new { workerId = worker.Id })</td>
                 <td>

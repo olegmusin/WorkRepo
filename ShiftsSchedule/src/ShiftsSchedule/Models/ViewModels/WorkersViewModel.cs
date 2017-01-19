@@ -21,7 +21,7 @@ namespace ShiftsSchedule.Models.ViewModels
         public string Specialty { get; set; }
         [Required]
         [Range(typeof(decimal),"0", "999999", ErrorMessage = "Salary should be in range from 0 to 100000")]
-        [DisplayFormat(DataFormatString = "$ *.*")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:C2}")]
         public decimal Salary { get; set; }
 
         public ICollection<WorkerShift> Shifts { get; set; }

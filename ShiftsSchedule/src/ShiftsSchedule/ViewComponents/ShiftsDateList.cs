@@ -4,6 +4,7 @@ using ShiftsSchedule.Models.Repository;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using ShiftsSchedule.Models;
 
 namespace ShiftsSchedule.ViewComponents
 {
@@ -11,21 +12,24 @@ namespace ShiftsSchedule.ViewComponents
     {
         private readonly WorkersRepository _repoWkr;
         private ProjectsRepository _repoPrj;
+        private ShiftsRepository _repoShft;
 
-        public ShiftsDateList(WorkersRepository repoWrk, ProjectsRepository repoPrj)
+        public ShiftsDateList(WorkersRepository repoWrk, ProjectsRepository repoPrj, ShiftsRepository repoShft)
         {
             _repoWkr = repoWrk;
             _repoPrj = repoPrj;
+            _repoShft = repoShft;
         }
 
         public IViewComponentResult Invoke(int? workerId, int? projectId, bool? extended)
         {
-            var items = GetItems(workerId, projectId);
+            var shifts = GetShifts(workerId, projectId);
+
             if (extended == true)
-                return View("Extended", items);
-            return View(items);
+                return View("Extended", shifts);
+            return View(shifts);
         }
-        private IEnumerable<ShiftsViewModel> GetItems(int? workerId, int? projectId)
+        private IEnumerable<ShiftsViewModel> GetShifts(int? workerId, int? projectId)
         {
             if (workerId != null)
             {
@@ -34,7 +38,14 @@ namespace ShiftsSchedule.ViewComponents
             else if (projectId != null)
             {
                 var project = _repoPrj.FindBy(p => p.Id == projectId).FirstOrDefault();
-                return Mapper.Map<IEnumerable<ShiftsViewModel>>((project.Shifts.ToList()));
+                var shifts = Mapper.Map<IEnumerable<ShiftsViewModel>>((project.Shifts.ToList()));
+
+                foreach(var shift in shifts)
+                {
+                    shift.Workers = _repoShft.WorkersAttendingShift(shift.Id).ToList();
+                }
+
+                return shifts; 
             }
             else return new List<ShiftsViewModel>();
         }

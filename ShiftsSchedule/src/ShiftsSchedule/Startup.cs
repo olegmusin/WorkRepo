@@ -13,6 +13,7 @@ using ShiftsSchedule.Models;
 using ShiftsSchedule.Data;
 using ShiftsSchedule.Services;
 using ShiftsSchedule.Models.Repository;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ShiftsSchedule
 {
@@ -106,7 +107,7 @@ namespace ShiftsSchedule
             }
 
             app.UseIdentity();
-
+            
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
           app.UseMvcWithDefaultRoute();
             //app.UseMvc(routes =>

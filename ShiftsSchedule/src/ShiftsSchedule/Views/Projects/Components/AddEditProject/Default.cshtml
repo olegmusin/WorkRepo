@@ -19,7 +19,7 @@
 
     <div class="form-group">
         <label asp-for="NumberOfWorkers">Workers Required</label>
-        <input asp-for="NumberOfWorkers" class="form-control" />
+        <input asp-for="NumberOfWorkers" class="form-control" value="1" max="100" min="1"/>
         <span asp-validation-for="NumberOfWorkers" class="text-danger"></span>
     </div>
 
