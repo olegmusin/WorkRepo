@@ -16,13 +16,13 @@ namespace ShiftsCalendarASP.Controllers
     {
         private ILogger<WorkersController> _logger;
         private WorkersRepository _repository;
-        
+
 
         public WorkersController(WorkersRepository repository, ILogger<WorkersController> logger)
         {
             _repository = repository;
             _logger = logger;
-   
+
         }
         //GET
         [HttpGet("")]
@@ -56,7 +56,7 @@ namespace ShiftsCalendarASP.Controllers
             }
 
         }
-        
+
         //POST
         [HttpPost("")]
         public async Task<IActionResult> AddWorker([FromForm]WorkersViewModel worker)
@@ -74,9 +74,27 @@ namespace ShiftsCalendarASP.Controllers
             return BadRequest();
         }
 
-        //UPDATE
+
+        //EDIT 
         [HttpGet("edit/{workerId}")]
-        public async Task<IActionResult> Edit([FromForm]WorkersViewModel worker)
+        public IActionResult Edit(int workerId)
+        {
+            try
+            {
+                var editWorker = _repository.GetSingle(workerId);
+             
+                return View(Mapper.Map<WorkersViewModel>(editWorker));
+            }
+            catch
+            {
+                _logger.LogError($"Failed to edit worker with Id: {workerId}");
+                return View("Workers");
+            }
+        }
+
+        //UPDATE
+        [HttpPost("edit/{workerId}")]
+        public async Task<IActionResult> Update([FromForm]WorkersViewModel worker)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +114,7 @@ namespace ShiftsCalendarASP.Controllers
         public async Task<IActionResult> Delete(int workerId)
         {
             if (ModelState.IsValid)
-            {            
+            {
                 _repository.Delete(workerId);
                 if (await _repository.SaveChangesAsync())
                 {
@@ -115,7 +133,7 @@ namespace ShiftsCalendarASP.Controllers
             try
             {
                 var shifts = _repository.GetWorkerShifts(workerId);
-                return ViewComponent("ShiftsList",Mapper.Map<IEnumerable<ShiftsViewModel>>(shifts.ToList()));
+                return ViewComponent("ShiftsList", Mapper.Map<IEnumerable<ShiftsViewModel>>(shifts.ToList()));
             }
             catch (Exception ex)
             {

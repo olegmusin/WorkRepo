@@ -1,0 +1,9 @@
+﻿@model WorkersViewModel
+@{
+    ViewData["Title"] = "Edit worker";
+}
+<div class="row">
+    <div class="col-md-4">
+        @await Component.InvokeAsync("AddEditWorker", new { workerId = Model.Id, mode = "Update" })
+    </div>
+</div>

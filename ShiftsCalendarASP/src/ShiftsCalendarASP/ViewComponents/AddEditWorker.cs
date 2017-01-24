@@ -9,21 +9,24 @@ using System.Threading.Tasks;
 
 namespace ShiftsCalendarASP.ViewComponents
 {
-    public class AddEditWorkerViewComponent: ViewComponent
+    public class AddEditWorker: ViewComponent
     {
 
         private readonly WorkersRepository _repo;
 
-        public AddEditWorkerViewComponent(WorkersRepository repo)
+        public AddEditWorker(WorkersRepository repo)
         {
             _repo = repo;
         }
 
-        public IViewComponentResult Invoke(int? workerId)
+        public IViewComponentResult Invoke(int? workerId, string mode)
         {
+            ViewBag.Mode = mode;
+
             if (workerId != null)
             {
                 var worker = GetWorker((int)workerId);
+                
                 return View(worker);
             }
             else
@@ -32,7 +35,7 @@ namespace ShiftsCalendarASP.ViewComponents
 
         private WorkersViewModel GetWorker(int workerId)
         {
-            return Mapper.Map<WorkersViewModel>(_repo.GetSingle(workerId));
+            return  Mapper.Map<WorkersViewModel>(_repo.GetSingle(workerId));
         }
     }
 }

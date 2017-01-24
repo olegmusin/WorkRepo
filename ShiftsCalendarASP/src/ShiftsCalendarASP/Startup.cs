@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using ShiftsCalendarASP.Data;
+﻿using ShiftsCalendarASP.Data;
 using ShiftsCalendarASP.Models;
 using ShiftsCalendarASP.Services;
-using AutoMapper;
-using Newtonsoft.Json.Serialization;
-using ShiftsCalendarASP.Models;
 using ShiftsCalendarASP.ViewModels;
 using ShiftsCalendarASP.Models.Repository;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
+using Microsoft.Extensions.Logging;
+using AutoMapper;
+using Microsoft.AspNetCore.Builder;
+using System.Collections.Generic;
 
 namespace ShiftsCalendarASP
 {
