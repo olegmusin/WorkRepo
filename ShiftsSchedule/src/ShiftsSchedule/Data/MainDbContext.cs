@@ -1,27 +1,32 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using ShiftsSchedule.Models;
 
 namespace ShiftsSchedule.Data
 {
-    public class ShiftsScheduleContext : DbContext
+    public sealed class ShiftsScheduleContext : IdentityDbContext<ApplicationUser>
     {
-        private IConfigurationRoot config;
+        private readonly IConfigurationRoot _config;
 
         public ShiftsScheduleContext(DbContextOptions<ShiftsScheduleContext> options, IConfigurationRoot config)
             : base(options)
         {
-            this.config = config;
+            this._config = config;
+            Database.EnsureCreated();
         }
 
         public DbSet<Worker> Workers { get; set; }
         public DbSet<Shift> Shifts { get; set; }
         public DbSet<Project> Projects { get; set; }
 
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(config["database:connection"]);
+            optionsBuilder.UseSqlServer(_config["database:connection"]);
         }
 
 
@@ -39,6 +44,7 @@ namespace ShiftsSchedule.Data
               .HasOne(w => w.Worker)
               .WithMany(s => s.Shifts)
               .HasForeignKey(w => w.WorkerId);
+            base.OnModelCreating(modelBuilder);
 
         }
     }

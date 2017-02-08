@@ -1,6 +1,0 @@
-D:\Workspaces\ShiftsCalendar\src\ShiftsCalendar\bin\Release\netcoreapp1.0\ShiftsCalendar.dll
-D:\Workspaces\ShiftsCalendar\src\ShiftsCalendar\bin\Release\netcoreapp1.0\ShiftsCalendar.pdb
-D:\Workspaces\ShiftsCalendar\src\ShiftsCalendar\obj\Release\netcoreapp1.0\ShiftsCalendar.csprojResolveAssemblyReference.cache
-D:\Workspaces\ShiftsCalendar\src\ShiftsCalendar\obj\Release\netcoreapp1.0\ShiftsCalendar.AssemblyInfo.cs
-D:\Workspaces\ShiftsCalendar\src\ShiftsCalendar\obj\Release\netcoreapp1.0\ShiftsCalendar.dll
-D:\Workspaces\ShiftsCalendar\src\ShiftsCalendar\obj\Release\netcoreapp1.0\ShiftsCalendar.pdb

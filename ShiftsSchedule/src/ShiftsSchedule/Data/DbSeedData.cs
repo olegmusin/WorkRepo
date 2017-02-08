@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ShiftsSchedule.Data
 {
     public class DbSeedData
     {
-        private ShiftsScheduleContext _context;
+        private readonly ShiftsScheduleContext _context;
 
         public DbSeedData(ShiftsScheduleContext context)
         {
@@ -16,15 +17,20 @@ namespace ShiftsSchedule.Data
 
         public async Task EnsureSeedData()
         {
-            if(!_context.Workers.Any())
-            {   
-                var wkr1 = new ShiftsSchedule.Models.Worker
-                { Name = "Andrew Piters",
+            if (!_context.Users.Any())
+            {
+                var roleAdmins = new IdentityRole() { Id = "1", Name = "admins" };
+                var roleWorkers = new IdentityRole() { Id = "2", Name = "workers" };
+                var roleOperators = new IdentityRole() { Id = "3", Name = "operators" };
+
+                var wkr1 = new Worker
+                {
+                    Name = "Andrew Piters",
                     Salary = 300,
                     Specialty = "Carpenter",
                     Shifts = new List<WorkerShift>()
                 };
-                
+
                 var wkr2 = new Worker
                 {
                     Name = "Brice Lambson",
@@ -33,9 +39,10 @@ namespace ShiftsSchedule.Data
                     Shifts = new List<WorkerShift>()
                 };
 
-             
+
                 var wkr3 = new Worker
-                { Name = "Rowan Miller",
+                {
+                    Name = "Rowan Miller",
                     Salary = 450,
                     Specialty = "Fitter",
                     Shifts = new List<WorkerShift>()
@@ -108,8 +115,31 @@ namespace ShiftsSchedule.Data
                 wkr3.Shifts.Add(wrkshft8);
                 wkr3.Shifts.Add(wrkshft9);
                 wkr3.Shifts.Add(wrkshft10);
+
+                var user1 = new ApplicationUser {UserName = "worker1"};
+                user1.Roles.Add(new IdentityUserRole<string> { RoleId = "2", UserId = user1.Id });
+                wkr1.UserId = user1.Id;
+                var user2 = new ApplicationUser { UserName = "worker2" };
+                user2.Roles.Add(new IdentityUserRole<string> { RoleId = "2", UserId = user2.Id });
+                wkr2.UserId = user2.Id;
+                var user3 = new ApplicationUser { UserName = "worker3" };
+                user3.Roles.Add(new IdentityUserRole<string> { RoleId = "2", UserId = user3.Id });
+                wkr3.UserId = user3.Id;
+
+                var admin = new ApplicationUser
+                {
+                    UserName = "Admin",
+                    Email = "oleg.y.musin@gmail.com",
+                };
+                _context.Roles.Add(roleWorkers);
+                _context.Roles.Add(roleOperators);
+                _context.Roles.Add(roleAdmins);
+     
+                admin.Roles.Add(new IdentityUserRole<string> { RoleId = "1", UserId = admin.Id });
+                _context.Users.AddRange(user1,user2,user3,admin);
+               
             }
-        
+
             await _context.SaveChangesAsync();
         }
     }

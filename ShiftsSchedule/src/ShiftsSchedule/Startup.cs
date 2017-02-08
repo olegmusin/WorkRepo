@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -13,7 +12,6 @@ using ShiftsSchedule.Models;
 using ShiftsSchedule.Data;
 using ShiftsSchedule.Services;
 using ShiftsSchedule.Models.Repository;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ShiftsSchedule
 {
@@ -59,11 +57,8 @@ namespace ShiftsSchedule
 
             // Add framework services.
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<ShiftsScheduleContext>()
                 .AddDefaultTokenProviders();
             services.AddLogging();
             services.AddMvc().AddJsonOptions(config =>
