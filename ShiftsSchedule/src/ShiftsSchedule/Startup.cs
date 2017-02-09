@@ -49,6 +49,7 @@ namespace ShiftsSchedule
             services.AddTransient<DbSeedData>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
             //One vm per request cycle
 
             services.AddScoped<ShiftsViewModel>();
@@ -102,9 +103,9 @@ namespace ShiftsSchedule
             }
 
             app.UseIdentity();
-            
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-          app.UseMvcWithDefaultRoute();
+
+
+            app.UseMvcWithDefaultRoute();
             //app.UseMvc(routes =>
             //{
             //    routes.MapRoute(

@@ -15,8 +15,8 @@ namespace ShiftsSchedule.Controllers
     [AutoValidateAntiforgeryToken]
     public class ProjectsController : Controller
     {
-        private ProjectsRepository _repository;
-        private ILogger<ProjectsController> _logger;
+        private readonly ProjectsRepository _repository;
+        private readonly ILogger<ProjectsController> _logger;
      
 
 
@@ -29,25 +29,15 @@ namespace ShiftsSchedule.Controllers
 
         #region CRUD Actions
         //GET
-        [HttpGet("")]
+        [HttpGet]
         [Authorize]
         public IActionResult Projects()
-        {
-            try
-            {
-                var projects = _repository.GetAll();
-                return View();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to get all projects from database, due to => {ex.Message}");
-                return BadRequest();
-            }
-
+        {           
+          return View();           
         }
 
         //ADD
-        [HttpPost("")]
+        [HttpPost]
         [Authorize]
         public async Task<IActionResult> Add(ProjectsViewModel project)
         {
@@ -116,7 +106,7 @@ namespace ShiftsSchedule.Controllers
             catch
             {
                 _logger.LogError($"Can't fetch project {projectId} for edit!");
-                return RedirectToAction("/Home/Error");
+                return RedirectToAction("Error","Home");
             }
         }
 
@@ -141,22 +131,7 @@ namespace ShiftsSchedule.Controllers
             }
 
         }
-        //GETBYNAME
-        [HttpGet("{projectName}")]
-        public IActionResult GetByName(string projectName)
-        {
-            try
-            {
-                var project = _repository.FindBy(p => p.Name == projectName).Take(0);
-                return Ok(Mapper.Map<ProjectsViewModel>(project));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to get project {projectName} from database, due to => {ex.Message}");
-                return BadRequest();
-            }
 
-        } 
         #endregion
     }
 }
