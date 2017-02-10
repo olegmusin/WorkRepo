@@ -33,8 +33,8 @@ namespace ShiftsSchedule.Services
             using (var client = new SmtpClient())
             {
                 
-                await client.ConnectAsync("smtp.mail.yahoo.com", 465, SecureSocketOptions.None).ConfigureAwait(false);
-                client.Authenticate(credentials);
+                await client.ConnectAsync("smtp.mail.yahoo.com", 465, SecureSocketOptions.SslOnConnect).ConfigureAwait(false);
+            //    await client.AuthenticateAsync(credentials);
                 await client.SendAsync(emailMessage).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);
             }

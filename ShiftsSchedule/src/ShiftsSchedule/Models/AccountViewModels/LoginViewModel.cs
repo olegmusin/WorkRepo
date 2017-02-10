@@ -9,8 +9,8 @@ namespace ShiftsSchedule.Models.AccountViewModels
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name ="User Name")]
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

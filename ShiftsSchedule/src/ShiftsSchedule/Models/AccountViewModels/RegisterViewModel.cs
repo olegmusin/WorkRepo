@@ -9,6 +9,11 @@ namespace ShiftsSchedule.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(25, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 5)]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+     
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

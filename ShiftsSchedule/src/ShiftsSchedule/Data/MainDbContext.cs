@@ -14,7 +14,7 @@ namespace ShiftsSchedule.Data
             : base(options)
         {
             this._config = config;
-            Database.EnsureCreated();
+          //  Database.EnsureCreated();
         }
 
         public DbSet<Worker> Workers { get; set; }
