@@ -14,8 +14,8 @@ namespace ShiftsSchedule.Controllers
     [Route("Shifts")]
     public class ShiftsController : Controller
     {
-        private ProjectsRepository _repository;
-        private ILogger<ShiftsController> _logger;
+        private readonly ProjectsRepository _repository;
+        private readonly ILogger<ShiftsController> _logger;
         
         #region CRUD ACTIONS
 

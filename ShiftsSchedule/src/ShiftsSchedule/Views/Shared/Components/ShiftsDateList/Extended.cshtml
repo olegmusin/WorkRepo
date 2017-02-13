@@ -12,24 +12,24 @@
     <tbody>
         @foreach (ShiftsViewModel shift in Model)
         {
-            <tr>
+            <tr class="@Html.Raw(shift.IsCanceled ? "hidden" : "")">
                 <td>@shift.Id</td>
                 <td style="text-align: center">@String.Format("{0:dd/MM/yyyy}", shift.Date)</td>
                 <td>
                     <a asp-action="Workers" asp-controller="Shifts"
-                       asp-route-id="@shift.Id" class="btn btn-sm btn-info">
+                       asp-route-id="@shift.Id" class="js-wrk-btn btn btn-sm btn-info">
                         @shift.Workers.Count()
                     </a>
                 <td>
-                    <button  id="btn-cancel-shift"
-                       data-shift-id="@shift.Id"
-                       data-project-id="@shift.ProjectId"
-                       class="js-cancel-shift">
+                    <button id="btn-cancel-shift"
+                            data-shift-id="@shift.Id"
+                            data-project-id="@shift.ProjectId"
+                            class="js-cancel-shift btn btn-sm btn-danger">
                         Cancel
                     </button>
                 </td>
             </tr>
-        }
+    }
     </tbody>
 </table>
 

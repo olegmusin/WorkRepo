@@ -88,11 +88,12 @@ namespace ShiftsSchedule.Controllers
                 _repository.Delete(workerId);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return RedirectToAction("Workers");
+                    _logger.LogInformation($"Worker with Id {workerId} has been deleted!");
+                    return Ok();
                 }
             }
 
-            _logger.LogError($"Failed to delete worker with id {workerId}");
+            _logger.LogError($"Failed to delete worker with id {workerId}!");
             return Redirect("/Home/error");
         }
         #endregion

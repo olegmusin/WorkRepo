@@ -4,6 +4,12 @@
 @using (Html.BeginForm(Model.Action, "Workers"))
 {
     Html.AntiForgeryToken();
+    <div class="@Html.Raw(Model.Action == "Update" ? "form-group": "hidden")">
+        <label asp-for="UserId"></label>
+        <input asp-for="UserId" class="form-control" />
+        <span asp-validation-for="UserId" class="text-warning" a></span>
+    </div>
+
     <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />

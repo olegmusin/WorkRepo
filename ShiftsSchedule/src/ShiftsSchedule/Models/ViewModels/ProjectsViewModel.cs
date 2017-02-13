@@ -27,6 +27,7 @@ namespace ShiftsSchedule.Models.ViewModels
         [Display(Name = "Workers required:")]
         public int NumberOfWorkers { get; set; }
 
+        public bool IsCanceled  { get; set; }      
         public string Action
         {
             get

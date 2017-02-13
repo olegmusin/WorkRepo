@@ -1,0 +1,47 @@
+﻿@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewBag.Title = "Admin page";
+}
+
+<h2>Users list</h2>
+<div class="col-md-6">
+    <table class="table table-responsive table-striped">
+        <thead>
+        <tr>
+            <th>User</th>
+            <th>E-mail</th>
+            <th>Roles</th>
+            <th>Manage</th>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            foreach (var u in UserManager.Users.Select(u => u).AsEnumerable())
+            {
+                <tr>
+                    <td>
+                        @u.UserName
+                    </td>
+                    <td>
+                        @u.Email
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                            @foreach (var r in await UserManager.GetRolesAsync(u))
+                            {
+                                <li>@String.Format("{0}", r)</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+
+                       @Html.ActionLink("Edit","EditUser", new {userId = u.Id})
+
+                    </td>
+                </tr>
+            }
+
+        }
+        </tbody>
+    </table>
+</div>

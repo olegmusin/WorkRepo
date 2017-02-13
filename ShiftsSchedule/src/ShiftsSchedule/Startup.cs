@@ -49,7 +49,8 @@ namespace ShiftsSchedule
             services.AddTransient<DbSeedData>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
+            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("AppKeys"));
+            
             //One vm per request cycle
 
             services.AddScoped<ShiftsViewModel>();
@@ -103,6 +104,7 @@ namespace ShiftsSchedule
             }
 
             app.UseIdentity();
+
 
 
             app.UseMvcWithDefaultRoute();

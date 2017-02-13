@@ -37,6 +37,13 @@ namespace ShiftsSchedule.Controllers
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
 
+        [Authorize(Roles = "admins")]
+        [HttpGet]
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
         //
         // GET: /Account/Login
         [HttpGet]
@@ -443,23 +450,18 @@ namespace ShiftsSchedule.Controllers
             }
         }
 
-        private Task<ApplicationUser> GetCurrentUserAsync()
-        {
-            return _userManager.GetUserAsync(HttpContext.User);
-        }
-
         private IActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
-            }
+            return Url.IsLocalUrl(returnUrl)
+                ? (IActionResult) Redirect(returnUrl)
+                : RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         #endregion
+
+        public IActionResult EditUser(string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -83,7 +83,8 @@ namespace ShiftsSchedule.Controllers
                 _repository.Delete(projectId);
                 if (await _repository.SaveChangesAsync())
                 {
-                    return RedirectToAction("Projects");
+                    _logger.LogInformation($"Project with Id {projectId} has been marked as deleted");
+                    return Ok();
                 }
             }
 
