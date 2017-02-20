@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ShiftsViewModel>
 
-<ul id="shiftslist">
+<ul id="shiftslist" class="ctrtxt">
     @foreach (ShiftsViewModel shift in Model)
     {
         <li style="text-align: center" class="@Html.Raw(shift.IsCanceled ? "hidden" : "")">

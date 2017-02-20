@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - Shifts Schedule</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />      
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/bootswatch/readable/bootstrap.css" />
         <link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -16,9 +16,9 @@
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        
+
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-       
+
     </environment>
 </head>
 <body>
@@ -36,10 +36,17 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Workers" asp-action="Workers">Workers</a></li>
+                    @if (User.Identity.IsAuthenticated && (User.IsInRole("admins") || User.IsInRole("operators")))
+                    {
+                        <li><a asp-area="" asp-controller="Workers" asp-action="Workers">Workers</a></li>
+                    }
                     <li><a asp-area="" asp-controller="Projects" asp-action="Projects">Projects</a></li>
                     <li><a asp-area="" asp-controller="Shifts" asp-action="Shifts">Shifts</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Admin">Admin</a></li>
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("admins"))
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Admin">Admin</a></li>
+                    }
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
@@ -49,9 +56,9 @@
     </div>
 
     <div class="container body-content">
-      
-         @RenderBody()
-        
+
+        @RenderBody()
+
     </div>
 
     <environment names="Development">
@@ -70,12 +77,12 @@
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
-       
+
     </environment>
     @Html.Partial("_ValidationScriptsPartial")
 
     @RenderSection("scripts", required: false)
-   
+
     <footer class="panel-footer navbar-fixed-bottom">
         <p style="text-align:center">&copy; 2016 - Shifts Schedule</p>
     </footer>

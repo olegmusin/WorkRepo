@@ -3,9 +3,14 @@
 }
 <div class="row">
     <div class="col-md-4">
-        @await Component.InvokeAsync("AddEditProject")
+        @if (User.Identity.IsAuthenticated && (User.IsInRole("admins") || User.IsInRole("operators")))
+        {
+            @await Component.InvokeAsync("AddEditProject")
+        }
     </div>
-    <div class="col-md-8">
+    <div class="@(User.Identity.IsAuthenticated &&
+                 (User.IsInRole("admins") ||
+                  User.IsInRole("operators")) ? "col-md-8" : "col-md-12" )">
         @await Component.InvokeAsync("ProjectsList")
     </div>
 </div>

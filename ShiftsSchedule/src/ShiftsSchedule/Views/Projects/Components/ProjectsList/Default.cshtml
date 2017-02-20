@@ -5,9 +5,9 @@
         <tr>
             <th>Name</th>
             <th>Address</th>
-            <th>Workers Required</th>
-            <th style="text-align:center">Shifts</th>
-            <th style="text-align:center">Action</th>
+            <th class="ctrtxt">Workers Required</th>
+            <th class="ctrtxt">Shifts</th>
+            <th class="ctrtxt">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -18,17 +18,33 @@
 
                 <td>@project.Address</td>
 
-                <td id="nofw">@project.NumberOfWorkers</td>
+                <td class="ctrtxt">@project.NumberOfWorkers</td>
 
-                <td>@await Component.InvokeAsync("ShiftsDateList", new { projectId = project.Id })</td>
-                <td>
-                    <div>
-                        <a asp-action="Edit" asp-route-id="@project.Id" class="btn btn-sm btn-warning">Edit</a>
-                        <a id="btn-cancel-project" data-project-id="@project.Id" class="js-cancel-project btn btn-sm btn-danger">Cancel</a>
-                    </div>
-                </td>
+                <td class="ctrtxt">@await Component.InvokeAsync("ShiftsDateList", new {projectId = project.Id })</td>
+                @if (User.Identity.IsAuthenticated && (User.IsInRole("admins") || User.IsInRole("operators")))
+                {
+                    <td class="ctrtxt">
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@project.Id" class="btn btn-sm btn-warning">Edit</a>
+                            <a id="btn-cancel-project" data-project-id="@project.Id" class="js-cancel-project btn btn-sm btn-danger">Cancel</a>
+                        </div>
+                    </td>
+                }
+                else
+                if (User.Identity.IsAuthenticated && User.IsInRole("workers"))
+                {
+                    <td class="ctrtxt">
+                        <div>
+                            <a asp-action="SignUpForProject" asp-controller="Projects"
+                               asp-route-id="@project.Id" class="btn btn-sm btn-success">
+                                Sign Up
+                                <i class="fa fa-sign-in"></i>
+                            </a>
+                        </div>
+                    </td>
+                }
             </tr>
 
-    }
+        }
     </tbody>
 </table>

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json.Serialization;
 using ShiftsSchedule.Models.ViewModels;
 using ShiftsSchedule.Models;
@@ -61,7 +62,8 @@ namespace ShiftsSchedule
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ShiftsScheduleContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders()
+                .AddRoleManager<ApplicationRoleManager>();
             services.AddLogging();
             services.AddMvc().AddJsonOptions(config =>
             {
