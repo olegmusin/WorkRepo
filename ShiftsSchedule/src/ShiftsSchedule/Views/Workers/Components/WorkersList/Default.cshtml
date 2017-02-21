@@ -9,8 +9,8 @@
             <th>Name</th>
             <th>Specialty</th>
             <th>Salary</th>
-            <th style="text-align:center">Shifts Attending</th>
-            <th>Action</th>
+            <th class="ctrtxt">Shifts Attending</th>
+            <th class="ctrtxt">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
                 </td>
 
                 <td>@await Component.InvokeAsync("ShiftsDateList", new { workerId = worker.Id })</td>
-                <td>
+                <td class="ctrtxt">
                     <a asp-action="Edit" asp-route-id="@worker.Id" class="btn btn-sm btn-warning">Edit</a>
                     <a id="btn-delete-worker" data-worker-id="@worker.Id" class="js-delete-worker btn btn-sm btn-danger">Delete</a>
                 </td>

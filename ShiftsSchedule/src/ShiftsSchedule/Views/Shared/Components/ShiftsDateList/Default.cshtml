@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<ShiftsViewModel>
 
-<ul id="shiftslist" class="ctrtxt">
+<ul id="shiftslist" >
     @foreach (ShiftsViewModel shift in Model)
     {
-        <li style="text-align: center" class="@Html.Raw(shift.IsCanceled ? "hidden" : "")">
+        <li class="@Html.Raw(shift.IsCanceled ? "hidden" : "") ctrtxt">
             @String.Format("{0:dd/MM/yyyy}", shift.Date)
         </li>
     }

@@ -23,7 +23,7 @@
                             @shift.Workers.Count()
                         </a>
                     </td>
-                    <td>
+                    <td class="ctrtxt">
                         <button id="btn-cancel-shift"
                                 data-shift-id="@shift.Id"
                                 data-project-id="@shift.ProjectId"
@@ -35,7 +35,7 @@
                 else
                 if (User.Identity.IsAuthenticated && User.IsInRole("workers"))
                 {
-                    <td>
+                    <td class="ctrtxt">
                         <a asp-action="SignUpToShift" asp-controller="Shifts"
                            asp-route-id="@shift.Id" class="js-wrk-btn btn btn-sm btn-success"></a>
                     </td>

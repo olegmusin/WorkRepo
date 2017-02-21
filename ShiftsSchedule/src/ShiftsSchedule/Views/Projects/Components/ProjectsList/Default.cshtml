@@ -2,7 +2,7 @@
 
 <table class="table table-striped table-responsive">
     <thead>
-        <tr>
+        <tr class="ctrtxt">
             <th>Name</th>
             <th>Address</th>
             <th class="ctrtxt">Workers Required</th>
@@ -20,7 +20,10 @@
 
                 <td class="ctrtxt">@project.NumberOfWorkers</td>
 
-                <td class="ctrtxt">@await Component.InvokeAsync("ShiftsDateList", new {projectId = project.Id })</td>
+                <td>
+                    <div>
+                        @await Component.InvokeAsync("ShiftsDateList", new { projectId = project.Id })
+                    </div>                </td>
                 @if (User.Identity.IsAuthenticated && (User.IsInRole("admins") || User.IsInRole("operators")))
                 {
                     <td class="ctrtxt">
@@ -38,7 +41,7 @@
                             <a asp-action="SignUpForProject" asp-controller="Projects"
                                asp-route-id="@project.Id" class="btn btn-sm btn-success">
                                 Sign Up
-                                <i class="fa fa-sign-in"></i>
+                                <i class="fa fa-calendar-check-o"></i>
                             </a>
                         </div>
                     </td>
