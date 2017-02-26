@@ -290,7 +290,7 @@ namespace ShiftsSchedule.Controllers
             var code = await _userManager.GeneratePasswordResetTokenAsync(user);
             var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
             await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+                $"Please reset your password by clicking here: \n\t {callbackUrl}");
             return View("ForgotPasswordConfirmation");
 
             // If we got this far, something failed, redisplay form
@@ -325,7 +325,7 @@ namespace ShiftsSchedule.Controllers
             {
                 return View(model);
             }
-            var user = await _userManager.FindByNameAsync(model.Email);
+            var user = await _userManager.FindByNameAsync(model.Name);
             if (user == null)
             {
                 // Don't reveal that the user does not exist

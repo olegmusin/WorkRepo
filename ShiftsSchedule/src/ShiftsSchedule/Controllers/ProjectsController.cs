@@ -110,7 +110,12 @@ namespace ShiftsSchedule.Controllers
                 return RedirectToAction("Error","Home");
             }
         }
-
+ 
+        [HttpGet("SignUpForProject/{projectId}")]
+        public IActionResult SignUpForProject()
+        {
+          return  RedirectToAction("Shifts","Shifts", new {projectId = RouteData.Values["projectId"]});
+        }
 
         #endregion
 
@@ -134,5 +139,7 @@ namespace ShiftsSchedule.Controllers
         }
 
         #endregion
+
+      
     }
 }

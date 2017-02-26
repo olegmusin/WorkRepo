@@ -3,7 +3,8 @@
 <table class="table table-hover table-responsive">
     <thead>
         <tr>
-            <th>Id</th>
+            <th>Address</th>
+            <th class="ctrtxt">Specialties list</th>
             <th class="ctrtxt">Date</th>
             <th class="ctrtxt">Workers</th>
             <th class="ctrtxt">Action</th>
@@ -13,7 +14,8 @@
         @foreach (ShiftsViewModel shift in Model)
         {
             <tr class="@Html.Raw(shift.IsCanceled ? "hidden" : "")">
-                <td>@shift.Id</td>
+                <td>@shift.Project.Address</td>
+                <td>not yet implemented</td>
                 <td class="ctrtxt">@String.Format("{0:dd/MM/yyyy}", shift.Date)</td>
                 @if (User.Identity.IsAuthenticated && (User.IsInRole("admins") || User.IsInRole("operators")))
                 {
@@ -26,7 +28,7 @@
                     <td class="ctrtxt">
                         <button id="btn-cancel-shift"
                                 data-shift-id="@shift.Id"
-                                data-project-id="@shift.ProjectId"
+                                data-project-id="@shift.Project.Id"
                                 class="js-cancel-shift btn btn-sm btn-danger">
                             Cancel
                         </button>

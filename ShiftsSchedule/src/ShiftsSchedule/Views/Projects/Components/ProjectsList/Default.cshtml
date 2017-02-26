@@ -23,7 +23,8 @@
                 <td>
                     <div>
                         @await Component.InvokeAsync("ShiftsDateList", new { projectId = project.Id })
-                    </div>                </td>
+                    </div>
+                </td>
                 @if (User.Identity.IsAuthenticated && (User.IsInRole("admins") || User.IsInRole("operators")))
                 {
                     <td class="ctrtxt">

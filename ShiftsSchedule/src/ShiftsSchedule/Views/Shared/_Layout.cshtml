@@ -39,14 +39,14 @@
                     @if (User.Identity.IsAuthenticated && (User.IsInRole("admins") || User.IsInRole("operators")))
                     {
                         <li><a asp-area="" asp-controller="Workers" asp-action="Workers">Workers</a></li>
+                        <li><a asp-area="" asp-controller="Shifts" asp-action="Shifts">Shifts</a></li>
                     }
-                    <li><a asp-area="" asp-controller="Projects" asp-action="Projects">Projects</a></li>
-                    <li><a asp-area="" asp-controller="Shifts" asp-action="Shifts">Shifts</a></li>
 
                     @if (User.Identity.IsAuthenticated && User.IsInRole("admins"))
                     {
                         <li><a asp-area="" asp-controller="Account" asp-action="Admin">Admin</a></li>
                     }
+                    <li><a asp-area="" asp-controller="Projects" asp-action="Projects">Projects</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>

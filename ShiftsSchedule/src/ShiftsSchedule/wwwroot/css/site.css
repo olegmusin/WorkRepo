@@ -26,33 +26,97 @@ textarea {
 
 /* buttons and links extension to use brackets: [ click me ] */
 .btn-bracketed::before {
-    display:inline-block;
+    display: inline-block;
     content: "[";
     padding-right: 0.5em;
 }
+
 .btn-bracketed::after {
-    display:inline-block;
+    display: inline-block;
     content: "]";
     padding-left: 0.5em;
 }
 
 /* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"]
-{
+.carousel-inner .item img[src$=".svg"] {
     width: 100%;
 }
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
-  /* Hide captions */
-  .carousel-caption {
-    display: none
-  }
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
 }
+
 #shiftslist {
     list-style: url("..//images/calendar.png");
     text-align: center;
 }
-.ctrtxt{
-    text-align: center
+
+.ctrtxt {
+    text-align: center;
 }
+
+.state-icon {
+    left: -5px;
+}
+
+.list-group-item-primary {
+    color: rgb(255, 255, 255);
+    background-color: rgb(66, 139, 202);
+}
+
+.homeimage {
+    position: relative;
+    width: 100%; /* for IE 6 */
+}
+
+.imgh2 {
+    position: absolute;
+    top: 20px;
+    left: -245px;
+    width: 100%;
+}
+
+    .imgh2 span {
+        color: whitesmoke;
+        font: bold 24px/45px Calibri, Sans-Serif;
+        letter-spacing: -1px;
+        background: rgb(0, 0, 0); /* на случай, если следующая строка не сработает */
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+    }
+
+.imgh3 {
+    position: absolute;
+    top: 80px;
+    right: 150px;
+    width: 100%;
+}
+
+    .imgh3 span {
+        color: whitesmoke;
+        font: bold 24px/45px Calibri, Sans-Serif;
+        letter-spacing: -1px;
+        background: rgb(0, 0, 0); /* на случай, если следующая строка не сработает */
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+    }
+
+.imgh1 {
+    position: absolute;
+    top: 15px;
+    left: 320px;
+    width: 80%;
+}
+
+    .imgh1 span {
+        color: coral;
+        font: bold 32px/45px Calibri, Sans-Serif;
+        letter-spacing: -1px;
+        background: rgb(0, 0, 0); /* на случай, если следующая строка не сработает */
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+    }

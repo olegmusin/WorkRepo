@@ -6,11 +6,27 @@
         @await Component.InvokeAsync("AddEditProject", new { projectId = Model.Id })
     </div>
 
-    <div class="col-md-4">
-       @await Component.InvokeAsync("AddShift", new { projectId = Model.Id })
+    <div class="col-md-2">
+        <label>Trades needed:</label>
+
+            <ul class="checked-list-box list-group">
+                <li class="list-group-item" data-color="warning">Site manager</li>
+                <li class="list-group-item" data-color="success">Carpenter</li>
+                <li class="list-group-item" data-color="info">Fitter</li>
+                <li class="list-group-item" data-color="warning">Mason</li>
+                <li class="list-group-item" data-color="success">Electrician</li>
+                <li class="list-group-item" data-color="info">Glazier</li>
+                <li class="list-group-item" data-color="warning">Plumber</li>
+                <li class="list-group-item" data-color="success">Welder</li>
+                <li class="list-group-item" data-color="info">HVAC</li>
+                <li class="list-group-item" data-color="warning">Laborer</li>
+            </ul>
+      
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
+        @await Component.InvokeAsync("AddShift", new { projectId = Model.Id })
+        <br />
         @await Component.InvokeAsync("ShiftsDateList", new { projectId = Model.Id, extended = true })
     </div>
 </div>

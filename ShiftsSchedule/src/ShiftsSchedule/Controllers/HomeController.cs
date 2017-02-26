@@ -15,14 +15,14 @@ namespace ShiftsSchedule.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Shifts Schedule";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Developer Contacts";
 
             return View();
         }

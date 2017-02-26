@@ -23,10 +23,22 @@ namespace ShiftsSchedule.Models.Repository
             return query;
         }
 
-        public IEnumerable<Shift> GetAllWithProjects()
+        public IEnumerable<Shift> GetAllForProject(int projectId)
         {
-            return _context.Shifts.Include(s => s.Project);
+            return _context.Shifts.Include(s => s.Project).Where(p => p.Project.Id == projectId);
 
+        }
+
+        public IEnumerable<Shift> GetAllWithWorkers()
+        {
+            return GetAll().Include(s => s.Workers);
+        }
+        public IEnumerable<Shift> GetAllForWorker(int workerId)
+        {
+            return _context.Shifts
+                .Include(s => s.Workers)
+                .ThenInclude(ws => ws.Worker)
+                .Where(w => w.Id == workerId); 
         }
 
         public IEnumerable<Worker> WorkersAttendingShift(int shiftId)

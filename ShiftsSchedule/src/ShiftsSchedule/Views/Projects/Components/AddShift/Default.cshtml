@@ -1,9 +1,9 @@
 ﻿@model ShiftsViewModel
-<form asp-controller="Shifts" asp-action="Create" asp-route-projectId="@Model.ProjectId" asp-antiforgery="true">
+<form asp-controller="Shifts" asp-action="Create" asp-route-projectId="@Model.Project.Id" asp-antiforgery="true">
     <div class="form-group">
         <label asp-for="Date">Shift date:</label>
         <input type="date" class="form-control"
-               id="inputDate" asp-for="Date" />
+               id="inputDate" asp-for="Date" style="width: 40%"/>
     </div>
     <button type="submit" class="btn btn-success">
         Add Shift

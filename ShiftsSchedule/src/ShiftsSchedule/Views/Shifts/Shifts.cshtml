@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ShiftsViewModel>
+
+@{
+    ViewBag.Title = "Available Shifts";
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("workers"))
+{
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th class="ctrtxt">Date</th>
+                <th class="ctrtxt">Project</th>
+                <th class="ctrtxt">Specialties list</th>
+                <th class="ctrtxt">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (ShiftsViewModel shift in Model)
+            {
+                <tr class="@Html.Raw(shift.IsCanceled ? "hidden" : "")">
+                    <td>@shift.Id</td>
+                    <td class="ctrtxt">@String.Format("{0:dd/MM/yyyy}", shift.Date)</td>
+                    <td class="ctrtxt">@shift.Project.Name</td>
+                    <td class="ctrtxt">not yet implemented</td>
+                    <td class="ctrtxt">
+                        <a asp-action="SignUpToShift" asp-controller="Shifts"
+                           asp-route-id="@shift.Id" class="js-signup-btn btn btn-sm btn-success">SignUp</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (User.Identity.IsAuthenticated && (User.IsInRole("admins") || User.IsInRole("operators")))
+{
+    @await Component.InvokeAsync("ShiftsDateList", new { extended = true, all = true })
+}

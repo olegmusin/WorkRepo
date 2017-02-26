@@ -1,6 +1,4 @@
-﻿
-using ShiftsSchedule.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -15,7 +13,7 @@ namespace ShiftsSchedule.Models.ViewModels
         public bool IsCanceled { get; set; }
         public ICollection<Worker> Workers { get; set; } = new List<Worker>();
 
-        public int ProjectId { get; set; }
+        public Project Project { get; set; }
 
     }
 }

@@ -1,7 +1,18 @@
-﻿@{
-    ViewData["Title"] = "About";
+﻿@using System.Reflection
+@{
+    ViewData["Title"] = "Nam et ipsa scientia potestas est.";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+<div class="ctrtxt">
+    <img src="../images/calendar-144.png" />
 
-<p>Use this area to provide additional information.</p>
+    <i>
+        <h3>@ViewData["Title"]</h3>
+        - Francis Bacon, 1st Viscount St. Alban
+    </i>
+
+    <h3>@ViewData["Message"]</h3>
+    <h5>@Assembly.GetEntryAssembly().GetName().Version</h5>
+
+    <p>This is the portfolio project by Oleg Musin, designed to demonstrate author's mastered skills in Web Application Development</p>
+    <p>Russia, Moscow</p>
+</div>

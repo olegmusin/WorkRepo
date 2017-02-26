@@ -14,7 +14,7 @@ namespace ShiftsSchedule.ViewComponents
 
         public IViewComponentResult Invoke(int projectId)
         {
-            return View(new ShiftsViewModel { ProjectId = projectId });
+            return View(new ShiftsViewModel { Project = _repo.GetSingle(projectId) });
         }
     }
 }
