@@ -31,24 +31,41 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Shifts Schedule</a>
+
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <ul class="nav navbar-nav navbar-form" style="height: 120%">
+                    <li>
+                        <i>
+                            <a asp-controller="Home" asp-action="Index" class="navbar-brand">
+                                <i class="fa fa-chevron-circle-left"></i>
+                                Shifts Schedule 
+                                <i class="fa fa-chevron-circle-right"></i>
+                            </a>
+                        </i>
+                   
+                    </li>
+                    <li><a class="btn" asp-controller="Home" asp-action="Index">Home</a></li>
                     @if (User.Identity.IsAuthenticated && (User.IsInRole("admins") || User.IsInRole("operators")))
                     {
-                        <li><a asp-area="" asp-controller="Workers" asp-action="Workers">Workers</a></li>
-                        <li><a asp-area="" asp-controller="Shifts" asp-action="Shifts">Shifts</a></li>
+                        <li><a class="btn" asp-controller="Workers" asp-action="Workers">Workers</a></li>
+                        <li><a class="btn" asp-controller="Shifts" asp-action="Shifts">Shifts</a></li>
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("workers"))
+                    {
+                        <li><a class="btn btn-warning" asp-controller="Shifts" asp-action="Calendar">My Shifts</a></li>
+                        <li><a class="btn btn-success" asp-controller="Projects" asp-action="Projects">Projects</a></li>
                     }
 
                     @if (User.Identity.IsAuthenticated && User.IsInRole("admins"))
                     {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Admin">Admin</a></li>
+                        <li><a class="btn" asp-controller="Projects" asp-action="Projects">Projects</a></li>
+                        <li><a class="btn btn-success" asp-controller="Account" asp-action="Admin">Admin</a></li>
+
                     }
-                    <li><a asp-area="" asp-controller="Projects" asp-action="Projects">Projects</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+
+                    <li><a class="btn" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a class="btn" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
