@@ -9,7 +9,7 @@ namespace ShiftsSchedule.Models
         [Key]
         public int Id { get; set; }
         public string  Name { get; set; }
-        public string Specialty { get; set; }
+        public Specialty Specialty { get; set; }
         public decimal Salary { get; set; }
 
         [Required]

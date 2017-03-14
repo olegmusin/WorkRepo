@@ -142,6 +142,16 @@ $(document).ready(function () {
         });
     });
 
+    $(".qty").click(function (e) {
+        e.stopPropagation();
+    });
+
+    $("#shiftslist tr").click(function() {
+        $(this).addClass('selected').siblings().removeClass('selected');
+        var value = $(this).find('td:first').html();
+        alert(value);
+    });
+
 
 
     $(function () {
@@ -149,6 +159,7 @@ $(document).ready(function () {
 
             // Settings
             var $widget = $(this),
+             
                 $checkbox = $('<input type="checkbox" class="hidden" />'),
                 color = ($widget.data("color") ? $widget.data("color") : "primary"),
                 style = ($widget.data("style") === "button" ? "btn-" : "list-group-item-"),
@@ -160,11 +171,12 @@ $(document).ready(function () {
                         icon: "glyphicon glyphicon-unchecked"
                     }
                 };
-
+            
             $widget.css("cursor", "pointer");
             $widget.append($checkbox);
 
-            // Event Handlers
+             //Event Handlers
+      
             $widget.on("click", function () {
                 $checkbox.prop("checked", !$checkbox.is(":checked"));
                 $checkbox.triggerHandler("change");

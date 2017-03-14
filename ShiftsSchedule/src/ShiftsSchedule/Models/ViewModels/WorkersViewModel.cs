@@ -18,8 +18,8 @@ namespace ShiftsSchedule.Models.ViewModels
         [StringLength(50, MinimumLength = 5)]
         public string Name { get; set; }
         [Required(AllowEmptyStrings = false, 
-            ErrorMessage = "Salary should be specified like one of the list")]
-        public string Specialty { get; set; }
+                  ErrorMessage = "Salary should be specified like one of the list")]
+        public Specialty Specialty { get; set; } = new Specialty();
 
         [Required]
         [Range(typeof(decimal),"0", "999999", ErrorMessage = "Salary should be in range from 0 to 100000")]

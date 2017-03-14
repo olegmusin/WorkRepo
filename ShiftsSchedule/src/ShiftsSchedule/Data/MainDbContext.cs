@@ -21,7 +21,7 @@ namespace ShiftsSchedule.Data
         public DbSet<Shift> Shifts { get; set; }
         public DbSet<Project> Projects { get; set; }
 
-
+        public DbSet<Specialty> Specialties { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

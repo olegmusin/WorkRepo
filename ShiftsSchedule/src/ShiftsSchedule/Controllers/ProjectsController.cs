@@ -102,6 +102,7 @@ namespace ShiftsSchedule.Controllers
             try
             {
                 var editProject = _repository.GetSingle(projectId);
+                ViewBag.Specialties = _repository.GetAllSpecialties();
                 return View("EditProject", Mapper.Map<ProjectsViewModel>(editProject));
             }
             catch

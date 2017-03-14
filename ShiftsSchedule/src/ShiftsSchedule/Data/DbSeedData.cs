@@ -19,15 +19,27 @@ namespace ShiftsSchedule.Data
         {
             if (!_context.Users.Any())
             {
-                var roleAdmins = new IdentityRole() { Id = "1", Name = "admins" };
-                var roleWorkers = new IdentityRole() { Id = "2", Name = "workers" };
-                var roleOperators = new IdentityRole() { Id = "3", Name = "operators" };
+                var roleAdmins = new IdentityRole() {Id = "1", Name = "admins"};
+                var roleWorkers = new IdentityRole() {Id = "2", Name = "workers"};
+                var roleOperators = new IdentityRole() {Id = "3", Name = "operators"};
+
+                var sp1 = new Specialty {Id = 1, Name = "Site Manager"};
+                var sp2 = new Specialty {Id = 2, Name = "Carpenter"};
+                var sp3 = new Specialty {Id = 3, Name = "Fitter"};
+                var sp4 = new Specialty {Id = 4, Name = "Mason"};
+                var sp5 = new Specialty { Id = 5, Name = "Electrician"};
+                var sp6 = new Specialty {Id = 6, Name = "Glazier"};
+                var sp7 = new Specialty {Id = 7, Name = "Plumber"};
+                var sp8 = new Specialty {Id = 8, Name = "Welder"};
+                var sp9 = new Specialty {Id = 9, Name = "Locksmith"};
+                var sp10 = new Specialty {Id = 10, Name = "Laborer"};
+                _context.Specialties.AddRange(sp1,sp2,sp3,sp4,sp5,sp6,sp7,sp8,sp9,sp10);
 
                 var wkr1 = new Worker
                 {
                     Name = "Andrew Piters",
                     Salary = 300,
-                    Specialty = "Carpenter",
+                    Specialty = sp2,
                     Shifts = new List<WorkerShift>()
                 };
 
@@ -35,7 +47,7 @@ namespace ShiftsSchedule.Data
                 {
                     Name = "Brice Lambson",
                     Salary = 500,
-                    Specialty = "Locksmith",
+                    Specialty = sp9,
                     Shifts = new List<WorkerShift>()
                 };
 
@@ -44,7 +56,7 @@ namespace ShiftsSchedule.Data
                 {
                     Name = "Rowan Miller",
                     Salary = 450,
-                    Specialty = "Fitter",
+                    Specialty = sp3,
                     Shifts = new List<WorkerShift>()
                 };
                 _context.Workers.AddRange(wkr1, wkr2, wkr3);
@@ -52,26 +64,31 @@ namespace ShiftsSchedule.Data
                 var sft1 = new Shift
                 {
                     Date = new System.DateTime(2016, 11, 01),
+                    ReqSpecialties = new List<Specialty> { sp2, sp3 },
                     Workers = new List<WorkerShift>()
                 };
                 var sft2 = new Shift
                 {
                     Date = new System.DateTime(2016, 11, 03),
+                    ReqSpecialties = new List<Specialty> { sp2, sp3 },
                     Workers = new List<WorkerShift>()
                 };
                 var sft3 = new Shift
                 {
                     Date = new System.DateTime(2016, 11, 04),
+                    ReqSpecialties = new List<Specialty> { sp2, sp3 },
                     Workers = new List<WorkerShift>()
                 };
                 var sft4 = new Shift
                 {
                     Date = new System.DateTime(2016, 08, 23),
+                    ReqSpecialties = new List<Specialty> { sp2, sp9, sp3 },
                     Workers = new List<WorkerShift>()
                 };
                 var sft5 = new Shift
                 {
                     Date = new System.DateTime(2016, 08, 24),
+                    ReqSpecialties = new List<Specialty> { sp2, sp9, sp3 },
                     Workers = new List<WorkerShift>()
                 };
 

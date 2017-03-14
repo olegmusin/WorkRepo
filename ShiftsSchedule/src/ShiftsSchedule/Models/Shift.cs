@@ -11,7 +11,9 @@ namespace ShiftsSchedule.Models
 
         public bool IsCanceled { get; set; }
 
+        public virtual ICollection<Specialty> ReqSpecialties { get; set; }
         public virtual ICollection<WorkerShift> Workers { get; set; }
 
     }
+
 }

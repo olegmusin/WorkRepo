@@ -5,28 +5,31 @@
     <div class="col-md-4">
         @await Component.InvokeAsync("AddEditProject", new { projectId = Model.Id })
     </div>
-
-    <div class="col-md-2">
-        <label>Trades needed:</label>
-
-            <ul class="checked-list-box list-group">
-                <li class="list-group-item" data-color="warning">Site manager</li>
-                <li class="list-group-item" data-color="success">Carpenter</li>
-                <li class="list-group-item" data-color="info">Fitter</li>
-                <li class="list-group-item" data-color="warning">Mason</li>
-                <li class="list-group-item" data-color="success">Electrician</li>
-                <li class="list-group-item" data-color="info">Glazier</li>
-                <li class="list-group-item" data-color="warning">Plumber</li>
-                <li class="list-group-item" data-color="success">Welder</li>
-                <li class="list-group-item" data-color="info">HVAC</li>
-                <li class="list-group-item" data-color="warning">Laborer</li>
-            </ul>
-      
-    </div>
-
     <div class="col-md-6">
         @await Component.InvokeAsync("AddShift", new { projectId = Model.Id })
         <br />
         @await Component.InvokeAsync("ShiftsDateList", new { projectId = Model.Id, extended = true })
     </div>
-</div>
+
+
+    <div class="col-md-offset-2" id="speclist">
+        <label>Trades needed:</label>
+
+        <div class="checked-list-box list-group">
+            @foreach (Specialty spec in (List<Specialty>)ViewBag.Specialties)
+            {            
+                    <div class="list-group-item" data-color="success">
+
+                        <div class="checkbox-inline">
+                            <a>@spec.Name</a>
+                            <input class="qty form-inline" type="number" min="0" style="max-width: 53px;" />
+                        </div>
+                    </div>              
+                }
+            </div>
+
+
+        </div>
+    </div>
+
+

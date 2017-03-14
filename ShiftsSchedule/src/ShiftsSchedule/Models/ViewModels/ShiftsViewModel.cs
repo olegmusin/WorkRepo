@@ -11,6 +11,7 @@ namespace ShiftsSchedule.Models.ViewModels
         [DisplayFormat(DataFormatString = "d")]
         public DateTime Date { get; set; }
         public bool IsCanceled { get; set; }
+        public ICollection<Specialty> ReqSpecialties { get; set; } = new List<Specialty>();
         public ICollection<Worker> Workers { get; set; } = new List<Worker>();
 
         public Project Project { get; set; }

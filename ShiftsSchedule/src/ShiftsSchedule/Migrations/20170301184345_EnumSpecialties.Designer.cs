@@ -8,9 +8,10 @@ using ShiftsSchedule.Data;
 namespace ShiftsSchedule.Migrations
 {
     [DbContext(typeof(ShiftsScheduleContext))]
-    partial class ShiftsScheduleContextModelSnapshot : ModelSnapshot
+    [Migration("20170301184345_EnumSpecialties")]
+    partial class EnumSpecialties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")

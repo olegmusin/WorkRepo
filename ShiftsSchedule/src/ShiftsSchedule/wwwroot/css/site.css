@@ -109,3 +109,22 @@ textarea {
         background: rgba(0, 0, 0, 0.7);
         padding: 10px;
     }
+
+#speclist {
+    overflow:auto
+}
+
+.list-group-item {
+   position: relative 
+}
+.checkbox-inline {
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+}
+
+
+.selected {
+    background-color: blueviolet;
+    color: #FFF;
+}
